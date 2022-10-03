@@ -7,38 +7,31 @@ site_name: SYNC
 
 theme:
   name: material
-  
-  palette:
-    # Palette toggle for automatic mode
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
 
+  palette: 
     # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default 
+      
+    - scheme: default
+      primary: white
       toggle:
-        icon: material/brightness-7
+        icon: material/weather-night
         name: Switch to dark mode
 
     # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
+      primary: blue-gray
       toggle:
-        icon: material/brightness-4
-        name: Switch to system preference
+        icon: material/weather-sunny
+        name: Switch to light mode
 
-  nav_style: dark
   #  favicon: attachment/portrait.png
-  locale: zh_CN # 中文，解决中文搜索问题
-  logo: docs/source/sync.png
   font:
     text: Ubuntu
     code: Ubuntu Mono
   features:
     - navigation.expand 
     - tabs 
+  logo: source/cat.jpg
 
 
 
