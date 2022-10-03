@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "3 学习中/603 分布式项目/Raft & ETCD/00 Raft 基础.md",
+            "file": "FigureBed 🌄/未命名.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "3 学习中/603 分布式项目/Raft & ETCD/00 Raft 基础.md",
+                "file": "FigureBed 🌄/未命名.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "3 学习中/603 分布式项目/Raft & ETCD/00 Raft 基础.md",
+                "file": "FigureBed 🌄/未命名.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "3 学习中/603 分布式项目/Raft & ETCD/00 Raft 基础.md"
+                "file": "FigureBed 🌄/未命名.md"
               }
             }
           },
@@ -146,6 +146,7 @@
   },
   "active": "267340340560c7c8",
   "lastOpenFiles": [
+    "3 学习中/603 分布式项目/Raft & ETCD/00 Raft 基础.md",
     "3 学习中/603 分布式项目/01 GO/3. GO 常量.md",
     "3 学习中/603 分布式项目/01 GO/2. 变量的 3 种方式.md",
     "3 学习中/603 分布式项目/01 GO/1. Hello World！.md",
@@ -154,7 +155,6 @@
     "4 Leetcode/01 Medium/3 无重复字符的最长子串.md",
     "4 Leetcode/01 Medium/_undo 61 旋转链表.md",
     "4 Leetcode/01 Medium/_undo.md",
-    "4 Leetcode/01 Medium/_review 151 反转字符串里的单词.md",
-    "4 Leetcode/01 Medium/_review 93 复原IP地址.md"
+    "4 Leetcode/01 Medium/_review 151 反转字符串里的单词.md"
   ]
 }
