@@ -6,9 +6,11 @@ site_name: SYNC
 
 
 theme:
-  name: material
+  # name: material
+  name: readthedocs
+  nav_style: dark
   #  favicon: attachment/portrait.png
-  language: zh # 中文，解决中文搜索问题
+  language: zh_CN # 中文，解决中文搜索问题
   logo: docs/source/test.png
   font:
     text: Ubuntu
