@@ -7,7 +7,7 @@ site_name: SYNC
 
 theme:
   name: material
-  logo: source/hit.png
+  logo: assets/img/hitsz.png
   favicon: source/github.png
   language: zh
 
@@ -75,9 +75,10 @@ markdown_extensions:
       custom_checkbox: true 
   - pymdownx.tilde
   - pymdownx.highlight:
-      # auto_title: true # 为代码块添加标题
+      auto_title: true # 为代码块添加标题
       linenums: true # 行号
   - tables
+  - pymdownx.snippets
 
 
 

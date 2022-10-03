@@ -30,5 +30,6 @@ Welcome to Foam-mkdocs-template! [[#support roamlinks]]!
 - [ ] tasks can be clicked in Preview to be checked off
 
 
-![Engelbart|200](https://history-computer.com/ModernComputer/Basis/images/Engelbart.jpg)
+![Engelbart|200](https://history-computer.com/ModernComputer/Basis/images/Engelbart.jpg){align=center}
 
+The `#!python range()` function is used to generate a sequence of numbers.
