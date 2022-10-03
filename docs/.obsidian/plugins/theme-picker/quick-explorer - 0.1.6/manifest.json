@@ -1,0 +1,9 @@
+{
+  "id": "quick-explorer",
+  "name": "快捷导航",
+  "version": "0.1.6",
+  "description": "使用鼠标或键盘从标题栏执行文件资源管理器操作(并查看当前文件路径)",
+  "minAppVersion": "0.12.12",
+  "authorUrl": "https://github.com/pjeby/quick-explorer",
+  "isDesktopOnly": true
+}

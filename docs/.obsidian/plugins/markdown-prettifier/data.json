@@ -1,0 +1,11 @@
+{
+  "bullet": "-",
+  "emphasis": "_",
+  "rule": "-",
+  "createHeaderIfNotPresent": true,
+  "newHeaderTemplate": "Author: sync\ndate : \"{{date:YYYY-MM-DD HH:mm dddd}}\" \ntag: \n",
+  "updateHeader": true,
+  "updateHeaderTemplate": "\ndate updated: \"{{date:YYYY-MM-DD HH:mm dddd}}\" \n",
+  "listItemIndent": "one",
+  "newlinesAroundHeadings": true
+}
