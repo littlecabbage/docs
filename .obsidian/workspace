@@ -1,0 +1,141 @@
+{
+  "main": {
+    "id": "59a9e5c977ca22f4",
+    "type": "split",
+    "children": [
+      {
+        "id": "2a9784dbb5948556",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Obsidian/模板 🗒️/read a paper.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "36eb131e287dc8c7",
+    "type": "split",
+    "children": [
+      {
+        "id": "74a975540bcb0463",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "50e9cdac2948f96b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "683216181f32cf4b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1754f567786bd2ed",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "2fb75cb7e07f9f81",
+    "type": "split",
+    "children": [
+      {
+        "id": "294724843ac290d8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "206fd39c44571af7",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Obsidian/模板 🗒️/read a paper.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a72b573be28bb974",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Obsidian/模板 🗒️/read a paper.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a423bce4fc0cbaef",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "5256ff090395f35e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Obsidian/模板 🗒️/read a paper.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "2a9784dbb5948556",
+  "lastOpenFiles": [
+    "docs/notes/new folder/new folder file1.md",
+    "docs/notes/new folder/未命名.md",
+    "docs/notes/hello world.md",
+    "docs/notes/hello world2.md",
+    "Pasted image 20221002114648.png",
+    "README.md",
+    "README-FR.md"
+  ]
+}
