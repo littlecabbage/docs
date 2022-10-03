@@ -9,6 +9,8 @@ theme:
   name: material
   logo: source/nike.svg
   language: zh
+
+  # 调色板
   palette: 
     # Palette toggle for light mode
     - scheme: default
@@ -23,16 +25,17 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
+  
+  # 字体
   font:
     text: Noto Sans Simplified Chinese
     code: Ubuntu Mono
 
+  # 导航、目录
   features:
     - navigation.tabs
     - navigation.top
     - toc.follow
-
-
 
 markdown_extensions: 
   - attr_list # https://squidfunk.github.io/mkdocs-material/reference/images/
@@ -63,8 +66,11 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist
   - pymdownx.tilde
+
+
 plugins:
   - search
+  - awesome-pages
   - roamlinks
     #- autolinks 
   - exclude:
@@ -74,3 +80,12 @@ plugins:
         - "*.gz"
       regex:
         - '.*\.(tmp|bin|tar)$'
+
+# 脚注
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/littlecabbage
+      name: github of sync
+
+copyright: Copyright &copy; 2022 SYNC
