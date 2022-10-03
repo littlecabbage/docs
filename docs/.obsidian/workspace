@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "other/Hello world!.md",
+            "file": "tutorial.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "other/Hello world!.md",
+                "file": "tutorial.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "other/Hello world!.md",
+                "file": "tutorial.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "other/Hello world!.md"
+                "file": "tutorial.md"
               }
             }
           },
@@ -146,9 +146,11 @@
   },
   "active": "2a9566de9ae45697",
   "lastOpenFiles": [
-    "attachment/portrait.png",
-    "other/Hello world!.md",
+    "test.md",
+    "index.md",
     "Home.md",
+    "other/Hello world!.md",
+    "attachment/portrait.png",
     "tutorial.md"
   ]
 }
