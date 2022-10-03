@@ -7,10 +7,10 @@ site_name: SYNC
 
 theme:
   name: material
-
+  logo: source/nike.svg
+  language: zh
   palette: 
     # Palette toggle for light mode
-      
     - scheme: default
       primary: white
       toggle:
@@ -23,15 +23,14 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
-
-  #  favicon: attachment/portrait.png
   font:
-    text: Ubuntu
+    text: Noto Sans Simplified Chinese
     code: Ubuntu Mono
+
   features:
-    - navigation.expand 
-    - tabs 
-  logo: source/cat.jpg
+    - navigation.tabs
+    - navigation.top
+    - toc.follow
 
 
 
