@@ -7,8 +7,8 @@ site_name: SYNC
 
 theme:
   name: material
-  logo: FigureBed/source/cat.jpg
-  favicon: FigureBed/source/github.png
+  logo: FigureBed 🌄/source/cat.jpg
+  favicon: FigureBed 🌄/source/github.png
   language: zh
 
   # 调色板
