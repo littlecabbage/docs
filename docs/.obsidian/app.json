@@ -1,7 +1,9 @@
 {
-  "attachmentFolderPath": "source",
-  "newLinkFormat": "absolute",
+  "attachmentFolderPath": "FigureBed/Pasted",
+  "newLinkFormat": "shortest",
   "newFileLocation": "current",
   "alwaysUpdateLinks": true,
-  "promptDelete": false
+  "promptDelete": false,
+  "useMarkdownLinks": false,
+  "showUnsupportedFiles": true
 }

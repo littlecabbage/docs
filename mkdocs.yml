@@ -7,8 +7,8 @@ site_name: SYNC
 
 theme:
   name: material
-  logo: source/cat.jpg
-  favicon: source/github.png
+  logo: FigureBed/source/cat.jpg
+  favicon: FigureBed/source/github.png
   language: zh
 
   # 调色板
@@ -85,7 +85,6 @@ markdown_extensions:
 
 plugins:
   - search
-  - git-revision-date-localized
   - awesome-pages
   - roamlinks
     #- autolinks 
@@ -113,12 +112,17 @@ extra_css:
     - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css
     - assets/css/template/blog.css
     - assets/css/template/grid.css
-    - assets/css/template/img-grids-float.css
+    - assets/css/template/img-grids-floats.css
     - assets/css/template/tooltipster.bundle.min.css
     - assets/css/template/utils.css
     - assets/css/admonition.css
     - assets/css/custom_attributes.css
     - assets/css/customization.css
-
+extra_javascript:
+  - assets/js/mathjax.js
+  - assets/js/utils.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - assets/js/tooltipster.bundle.js  
 
 copyright: Copyright &copy; 2022 SYNC
