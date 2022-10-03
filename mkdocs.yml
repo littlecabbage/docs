@@ -7,7 +7,7 @@ site_name: SYNC
 
 theme:
   name: material
-  logo: assets/img/hitsz.png
+  logo: source/cat.jpg
   favicon: source/github.png
   language: zh
 
