@@ -7,21 +7,22 @@ site_name: SYNC
 
 theme:
   name: material
-  logo: source/nike.svg
+  logo: source/hit.png
+  favicon: source/github.png
   language: zh
 
   # 调色板
   palette: 
     # Palette toggle for light mode
     - scheme: default
-      primary: white
+      primary: indigo
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - scheme: slate
-      primary: blue-gray
+      primary: grey
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
