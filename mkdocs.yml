@@ -15,21 +15,24 @@ theme:
   palette: 
     # Palette toggle for light mode
     - scheme: default
-      primary: indigo
+      primary: teal
+      accent: light blue
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - scheme: slate
-      primary: grey
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
   
   # 字体
   font:
-    text: Noto Sans Simplified Chinese
+    # text: Noto Sans Simplified Chinese
+    text: Ubuntu
     code: Ubuntu Mono
 
   # 导航、目录
@@ -37,6 +40,8 @@ theme:
     - navigation.tabs
     - navigation.top
     - toc.follow
+    - search.suggest
+    - search.highlight
 
 markdown_extensions: 
   - attr_list # https://squidfunk.github.io/mkdocs-material/reference/images/
@@ -58,8 +63,9 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details
-  # - pymdownx.emoji:
-      # emoji_generator: !!python/name:pymdownx.emoji.to_png
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji 
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
@@ -67,6 +73,12 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist
   - pymdownx.tilde
+  - pymdownx.highlight:
+      # auto_title: true # 为代码块添加标题
+      linenums: true # 行号
+  # - tables
+
+
 
 
 plugins:
@@ -81,6 +93,8 @@ plugins:
         - "*.gz"
       regex:
         - '.*\.(tmp|bin|tar)$'
+  
+
 
 # 脚注
 extra:
@@ -91,5 +105,7 @@ extra:
     - icon: fontawesome/solid/paper-plane
       link: mailto:<zengzh1997@126.com>
   generator: false # hide "generte by  mkdocs"
+
+
 
 copyright: Copyright &copy; 2022 SYNC

@@ -7,12 +7,8 @@
         "id": "2a9566de9ae45697",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "tutorial.md",
-            "mode": "source",
-            "source": false
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -77,7 +73,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tutorial.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +89,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "tutorial.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -116,9 +110,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "tutorial.md"
-              }
+              "state": {}
             }
           },
           {
@@ -146,11 +138,11 @@
   },
   "active": "2a9566de9ae45697",
   "lastOpenFiles": [
+    "tutorial.md",
     "test.md",
     "index.md",
     "Home.md",
     "other/Hello world!.md",
-    "attachment/portrait.png",
-    "tutorial.md"
+    "attachment/portrait.png"
   ]
 }
