@@ -1,1 +1,11 @@
-{}
+{
+  "Enhanced-editing:hyper-internal": [],
+  "Enhanced-editing:internal-hyper": [
+    {
+      "modifiers": [
+        "Shift"
+      ],
+      "key": "Q"
+    }
+  ]
+}

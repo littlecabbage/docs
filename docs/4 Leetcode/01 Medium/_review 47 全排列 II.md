@@ -6,8 +6,6 @@ tag: review
 
 #回溯
 
-![](FigureBed%20🌄/Pasted/Pasted%20image%2020220605225522.png)
-
 有问题的代码
 
 ```cpp

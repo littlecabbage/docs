@@ -6,8 +6,7 @@ date updated: 2022-10-03 22:11 Monday
 ---
 
 #脑筋急转弯
-![[FigureBed%20🌄/Pasted/Pasted%20image%2020220605213343.png]]
-
+![[Pasted image 20220605213343.png]]
 ```cpp
 class Solution {
 public:
