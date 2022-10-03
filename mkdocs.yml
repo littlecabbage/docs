@@ -87,5 +87,8 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/littlecabbage
       name: github of sync
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:<zengzh1997@126.com>
+  generator: false # hide "generte by  mkdocs"
 
 copyright: Copyright &copy; 2022 SYNC
