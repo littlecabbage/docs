@@ -1,5 +1,8 @@
 # 1. 如何创建一个mkdocs项目
-
+- 官方文档： https://squidfunk.github.io/mkdocs-material/
+- 优秀项目： https://squidfunk.github.io/mkdocs-material/
+- 中文教程（mkdocs版本太老了）： https://github.com/Jackiexiao/mkdocs-roamlinks-plugin
+- mkdocs 入门视屏： 
 # 2. 修改配置文件
 
 ```yaml
