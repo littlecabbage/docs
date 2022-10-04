@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Home.md",
+            "file": "index.md",
             "mode": "source",
             "source": false
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Home.md",
+                "file": "index.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Home.md",
+                "file": "index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Home.md"
+                "file": "index.md"
               }
             }
           },
@@ -146,6 +146,7 @@
   },
   "active": "267340340560c7c8",
   "lastOpenFiles": [
+    "Home.md",
     "4 求职准备/02 操作系统/00 操作系统复习进度.md",
     "1 写作/mkdocs.md",
     "2 写作/index.md",
@@ -154,7 +155,6 @@
     "2 求职准备/01 Leetcode/02 Hard/23. 合并 K 个排序链表.md",
     "2 求职准备/01 Leetcode/03 奇奇怪怪/50亿条URL 两个文件内存4G，求相同URL.md",
     "2 求职准备/01 Leetcode/03 奇奇怪怪/c++ 中 string 和 int 之间相互转换.md",
-    "2 求职准备/01 Leetcode/必刷82题.md",
-    "2 求职准备/00 编程语言/Python/1 Python 基础/4. yield 关键字理解.md"
+    "2 求职准备/01 Leetcode/必刷82题.md"
   ]
 }

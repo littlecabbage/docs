@@ -1,6 +1,8 @@
 {
   "version": 2,
-  "defaultNote": "Home",
+  "defaultNote": "index",
+  "useMoment": false,
+  "momentFormat": "YYYY-MM-DD",
   "workspace": "sync",
   "workspaceEnabled": false,
   "hasRibbonIcon": true,
