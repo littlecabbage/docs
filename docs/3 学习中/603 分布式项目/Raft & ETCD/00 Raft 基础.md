@@ -6,10 +6,9 @@ tag: Raft
 
 # 0. 复制状态机的概念
 
-![](FigureBed%20🌄/Pasted/Pasted%20image%2020220612111158.png)
+![[FigureBed%20🌄/Pasted/Pasted%20image%2020220612111158.png]]
 
-![](FigureBed%20🌄/Pasted/Pasted%20image%2020220612111233.png)
-
+![[FigureBed%20🌄/Pasted/Pasted%20image%2020220612111233.png]]
 # 1. 3 种状态
 
 ![](FigureBed%20🌄/Pasted/Pasted%20image%2020220612111319.png)
