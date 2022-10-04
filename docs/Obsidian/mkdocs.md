@@ -1,8 +1,9 @@
 # 1. 如何创建一个mkdocs项目
 - 官方文档： https://squidfunk.github.io/mkdocs-material/
-- 优秀项目： https://squidfunk.github.io/mkdocs-material/
+- 优秀项目： https://github.com/ObsidianPublisher/obsidian-mkdocs-publisher-template
 - 中文教程（mkdocs版本太老了）： https://github.com/Jackiexiao/mkdocs-roamlinks-plugin
-- mkdocs 入门视屏： 
+- mkdocs 入门视屏： [Python版宝藏级静态站点生成器Material for MkDocs](https://www.bilibili.com/video/BV1nt4y157sR/?spm_id_from=..search-card.all.click&vd_source=ab2f866858f0016a32f6db0daf3438df)
+
 # 2. 修改配置文件
 
 ```yaml
