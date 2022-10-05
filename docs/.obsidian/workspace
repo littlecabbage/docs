@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "1 求职准备/01 Leetcode/01 Medium/_review 31 下一个排列.md",
+            "file": "2 学习中/GIT/未命名.md",
             "mode": "source",
             "source": true
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1 求职准备/01 Leetcode/01 Medium/_review 31 下一个排列.md",
+                "file": "2 学习中/GIT/未命名.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1 求职准备/01 Leetcode/01 Medium/_review 31 下一个排列.md",
+                "file": "2 学习中/GIT/未命名.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1 求职准备/01 Leetcode/01 Medium/_review 31 下一个排列.md"
+                "file": "2 学习中/GIT/未命名.md"
               }
             }
           },
@@ -146,6 +146,7 @@
   },
   "active": "267340340560c7c8",
   "lastOpenFiles": [
+    "1 求职准备/01 Leetcode/01 Medium/_review 31 下一个排列.md",
     "1 求职准备/01 Leetcode/00 必会模板/堆排序.md",
     "1 求职准备/01 Leetcode/00 必会模板/二分基础.md",
     "1 求职准备/01 Leetcode/必刷82题.md",
@@ -154,7 +155,6 @@
     "Obsidian/mkdocs.md",
     "3 阅读/RSA 实际应用到基础原理.md",
     "Home.md",
-    "4 求职准备/02 操作系统/00 操作系统复习进度.md",
-    "2 写作/index.md"
+    "4 求职准备/02 操作系统/00 操作系统复习进度.md"
   ]
 }
