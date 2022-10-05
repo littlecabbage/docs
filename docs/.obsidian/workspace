@@ -10,7 +10,7 @@
           "type": "markdown",
           "state": {
             "file": "Obsidian/mkdocs.md",
-            "mode": "preview",
+            "mode": "source",
             "source": true
           }
         }
@@ -142,7 +142,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 192.5
+    "width": 299.5
   },
   "active": "267340340560c7c8",
   "lastOpenFiles": [

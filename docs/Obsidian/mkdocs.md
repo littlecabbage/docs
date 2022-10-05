@@ -1,10 +1,12 @@
-# 1. 如何创建一个mkdocs项目
+# mkdocs
+
+## 1. 如何创建一个 mkdocs 项目
 - 官方文档： https://squidfunk.github.io/mkdocs-material/
 - 优秀项目： https://github.com/ObsidianPublisher/obsidian-mkdocs-publisher-template
-- 中文教程（mkdocs版本太老了）： https://github.com/Jackiexiao/mkdocs-roamlinks-plugin
-- mkdocs 入门视屏： [Python版宝藏级静态站点生成器Material for MkDocs](https://www.bilibili.com/video/BV1nt4y157sR/?spm_id_from=..search-card.all.click&vd_source=ab2f866858f0016a32f6db0daf3438df)
+- 中文教程（mkdocs 版本太老了）： https://github.com/Jackiexiao/mkdocs-roamlinks-plugin
+- mkdocs 入门视屏： [Python 版宝藏级静态站点生成器 Material for MkDocs](https://www.bilibili.com/video/BV1nt4y157sR/?spm_id_from=..search-card.all.click&vd_source=ab2f866858f0016a32f6db0daf3438df)
 
-# 2. 修改配置文件
+## 2. 修改配置文件
 
 ```yaml
 # official tutorial 
@@ -12,7 +14,6 @@
 # mkdocs: https://www.mkdocs.org/user-guide/configuration/
 
 site_name: SYNC
-
 
 theme:
   name: material
@@ -89,9 +90,6 @@ markdown_extensions:
   - tables
   - pymdownx.snippets
 
-
-
-
 plugins:
   - search
   - awesome-pages
@@ -105,7 +103,6 @@ plugins:
       regex:
         - '.*\.(tmp|bin|tar)$'
   
-
 
 # 脚注
 extra:
@@ -136,5 +133,24 @@ extra_javascript:
 
 copyright: Copyright &copy; 2022 SYNC
 
-
 ```
+
+## 3. 注意事项
+
+### 3.1 目录
+[基于mkdocs-material搭建个人静态博客(含支持的markdown语法)](https://cyent.github.io/markdown-with-mkdocs-material/syntax/headline/)
+- 一个`.md` 里只能有一个 `#`，跟着多个 `##`。如果有多个 `#`，则不会自动生产本页目录。
+- 如果有 `#`，则使用该标题作为本页正文部分第一行，如果没有 `#`，则为 `mkdocs.yml` 里指定的 pages 名。
+- 个人建议 `.md` 从 `##` 开始，不要用 `#`。
+
+### 3.2 高亮
+[代码高亮](https://cyent.github.io/markdown-with-mkdocs-material/syntax/highlight_code/#_1)
+依赖模块: pymdownx.inlinehilite
+
+使用shebang可以在一行文本里实现代码高亮
+
+```text
+`#!python print "Hello, world!"`或`:::python print "Hello, world!"`
+```
+
+
