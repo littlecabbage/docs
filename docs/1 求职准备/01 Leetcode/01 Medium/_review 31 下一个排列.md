@@ -6,6 +6,9 @@ date updated: 2022-10-03 22:11 Monday
 ---
 
 #脑筋急转弯
+
+# _review 31 下一个排列
+
 ![[Pasted image 20220605213343.png]]
 ```cpp
 class Solution {
