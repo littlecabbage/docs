@@ -7,7 +7,7 @@ site_name: SYNC
 
 theme:
   name: material
-  logo: FigureBed 🌄/source/hit.png
+  logo: FigureBed 🌄/source/nike.svg
   favicon: FigureBed 🌄/source/github.png
   language: zh
 
@@ -15,7 +15,7 @@ theme:
   palette: 
     # Palette toggle for light mode
     - scheme: default
-      primary: teal
+      primary: white
       accent: light blue
       toggle:
         icon: material/weather-night
@@ -48,7 +48,8 @@ markdown_extensions:
   - pymdownx.tabbed  # https://squidfunk.github.io/mkdocs-material/reference/content-tabs/
   - nl2br # newline-to-break 
   - toc:
-      permalink: '#' # heading anchor 
+      # permalink: '#' # heading anchor 
+      permalink: true
       slugify: !!python/name:pymdownx.slugs.uslugify # 解决中文标题解析问题
   - admonition
   - codehilite:
