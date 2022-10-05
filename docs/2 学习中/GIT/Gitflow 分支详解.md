@@ -56,21 +56,19 @@ GitHub/GitLab 这样工具的出现，让我们的工作可以呈现在一个工
 
 就像上面这个图显示的一样，紫色的分支就是功能分支，合并后就会像上面这个样子。
 
-### GitFlow 协同工作流
+### 1.3 GitFlow 协同工作流
 
 在真实的生产过程中，前面的协同工作流还是不能满足工作的要求。这主要因为我们的生产过程是比较复杂的，软件生产中会有各式各样的问题，并要面对不同的环境。我们要在不停地开发新代码的同时，维护线上的代码，于是，就有了下面这些需求。
-
 1. **希望有一个分支是非常干净的，上面是可以发布的代码，上面的改动永远都是可以发布到生产环境中的。** 这个分支上不能有中间开发过程中不可以上生产线的代码提交。
 2. 希望当代码达到可以上线的状态时，也就是在 alpha/beta release 时，**在测试和交付的过程中，依然可以开发下一个版本的代码。**
 3. 最后，对于已经发布的代码，也会有一些 **Bug-fix** 的改动，不会将正在开发的代码提交到生产线上去。
 
 为了解决这些问题，GitFlow 协同工作流就出来了。
-
 这个协同工作流的核心思想如下图所示。
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/a836de2bf65841b78fbfbbd755b0064a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-整个代码库中一共有五种分支。
+整个代码库中一共有**五种分支** 。
 - <mark style="background: #ABF7F7A6;">Master 分支</mark>。也就是主干分支，用作发布环境，上面的每一次提交都是可以发布的。
 - <mark style="background: #ABF7F7A6;">Feature 分支</mark>。也就是功能分支，用于开发功能，其对应的是开发环境。
 - <mark style="background: #ABF7F7A6;">Developer 分支</mark>。是开发分支，一旦功能开发完成，就向 Developer 分支合并，合并完成后，删除功能分支。这个分支对应的是集成测试环境。
@@ -81,12 +79,11 @@ GitHub/GitLab 这样工具的出现，让我们的工作可以呈现在一个工
 >合并完成后，删除 Hotfix 分支。
 
 这就是整个 GitFlow 协同工作流的工作过程。我们可以看到：
-
 1. **我们需要长期维护 Master 和 Developer 两个分支。**
 2. 这其中的方式还是有一定复杂度的，尤其是 Release 和 Hotfix 分支需要同时向两个分支作合并。所以，如果没有一个好的工具来支撑的话，这会因为我们可能会忘了做一些操作而导致代码不一致。
 3. GitFlow 协同虽然工作流比较重。但是它几乎可以应对所有公司的各种开发流程，包括瀑布模型，或是快速迭代模型。
 
-### Gitflow 协同工作流的缺点
+### 1.4 Gitflow 协同工作流的缺点
 
 其中有个问题就是因为分支太多，所以会出现 git log 混乱的局面。具体来说，主要是 `git- flow` 使用 `gitmerge --no-ff` 来合并分支，在 git-flow 这样多个分支的环境下会让你的分支管理的 log 变得很难看。如下所示，左边是使用–no-ff 参数在多个分支下的问题。
 
@@ -121,14 +118,14 @@ GitHub/GitLab 这样工具的出现，让我们的工作可以呈现在一个工
 
 ![](https://img-blog.csdnimg.cn/ff8b012433ea46ff9cf563c766f48557.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-- 我们现在想开发一个新功能，glodstyle , 改变界面的皮肤，分别创建对应的分支
+- 我们现在想开发一个`新功能`，glodstyle , 改变界面的皮肤，分别创建对应的分支
 
 ![在这里插入图片描述|400](https://img-blog.csdnimg.cn/d91c475947a4473f9e139a9dae2ea9bb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-- 再开发一个小游戏功能，分别创建对应的分支
+- 再开发一个`小游戏功能`，分别创建对应的分支
 ![在这里插入图片描述|400](https://img-blog.csdnimg.cn/a2592ed4453342058e1dee7771e8791b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-- 如果线上跑的程序出现 bug 了，创建一个热修复分支。
+- 如果线上跑的程序出现 bug 了，创建一个`热修复分支`。
 
 ![在这里插入图片描述|400](https://img-blog.csdnimg.cn/8367d84d2f4b44d0b46563ebecb6bc7e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
@@ -151,8 +148,7 @@ GitHub/GitLab 这样工具的出现，让我们的工作可以呈现在一个工
 hotfix 分支 修复完 bug 后，直接就删除了。也可以不需要 release 分支，直接在 develop 分支上进行测试。
 
 分支类型
-- master 主分之(生产环境分支)，确保任何时刻该分之上的代码都是可发布的稳定的，不允许直接提交代码到该分支。为实现更严格的控制可以添加权限，只有
-> 主程序员才可操作该分支，普通开发员无权限
+- master 主分之(生产环境分支)，**确保任何时刻该分之上的代码都是可发布的稳定的，不允许直接提交代码到该分支。**<u>为实现更严格的控制可以添加权限，只有主程序员才可操作该分支，普通开发员无权限。</u>
 - develop 开发分支，该分支上的代码是开发完成且经过测试(自测)的代码。在多人协作开发的场景下不建议直接在该分支上提交代码应该配合功能分支、预发布分支和补丁分支来进行代码的合并
 - feature/FEATURE\_NAME 功能分支
 - release/vSEMATIC\_VERSION 预发布分支
@@ -171,13 +167,13 @@ hotfix 分支 修复完 bug 后，直接就删除了。也可以不需要 releas
 
 ### 2.1 历史分支
 
-相对使用仅有的一个 master 分支，Gitflow 工作流使用 2 个分支来记录项目的历史。master 分支存储了正式发布的历史，而 develop 分支作为功能的集成分支。 这样也方便 master 分支上的所有提交分配一个版本号。
+相对使用仅有的一个 master 分支，**Gitflow 工作流使用 2 个分支来记录项目的历史。** <mark style="background: #ABF7F7A6;">master 分支</mark>存储了正式发布的历史，而 <mark style="background: #ABF7F7A6;">develop 分支</mark>作为功能的集成分支。 这样也方便 master 分支上的所有提交分配一个<mark style="background: #ABF7F7A6;">版本号</mark>。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/7b6713e6950d42d7827503fe1e8eb237.png)
+![在这里插入图片描述|400](https://img-blog.csdnimg.cn/7b6713e6950d42d7827503fe1e8eb237.png)
 
 ### 2.2 功能分支
 
-每个新功能位于一个自己的分支，这样可以 push 到中央仓库以备份和协作。 但功能分支不是从 master 分支上拉出新分支，而是使用 develop 分支作为父分支。当新功能完成时，合并回 develop 分支。 新功能提交应该从不直接与 master 分支交互。
+**每个新功能位于一个自己的分支，这样可以 push 到中央仓库以备份和协作。** <mark style="background: #ABF7F7A6;">但功能分支不是从 master 分支上拉出新分支，而是使用 develop 分支作为父分支。当新功能完成时，合并回 develop 分支。 </mark>新功能提交应该从不直接与 master 分支交互。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d439258cb248431d9857d21001fa1c3e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 注意，从各种含义和目的上来看，功能分支加上 develop 分支就是功能分支工作流的用法。但 Gitflow 工作流没有在这里止步。
@@ -186,9 +182,9 @@ hotfix 分支 修复完 bug 后，直接就删除了。也可以不需要 releas
 
 ![](https://img-blog.csdnimg.cn/c8e27089b097406eb3ca7fb34608bc95.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-一旦 develop 分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，就从 develop 分支上 fork 一个发布分支。 新建的分支用于开始发布循环，所以从这个时间点开始之后新的功能不能再加到这个分支上—— 这个分支只应该做 Bug 修复、文档生成和其它面向发布任务。 一旦对外发布的工作都完成了
+一旦 develop 分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，<mark style="background: #ABF7F7A6;">就从 develop 分支上 fork 一个发布分支（Release）。 新建的分支用于开始发布循环，</mark>**所以从这个时间点开始之后新的功能不能再加到这个分支（Release）上—— 这个分支（Release）只应该做 Bug 修复、文档生成和其它面向发布任务。** <mark style="background: #ABF7F7A6;">一旦对外发布的工作都完成了，发布分支（Release）合并到 master 分支并分配一个版本号打好 Tag。 </mark>
 
-发布分支合并到 master 分支并分配一个版本号打好 Tag。 另外，这些从新建发布分支以来的做的修改要合并回 develop 分支。(最后再删除 Release 分支)使用一个用于发布准备的专门分支，使得一个团队可以在完善当前的发布版本的同时，另一个团队可以继续开发下个版本的功能。 这也打造定义良好的开发阶段（比如，可以很轻松地说，『这周我们要做准备发布版本 4.0』，并且在仓库的目录结构中可以实际看到）。
+**另外，这些从新建发布分支以来的做的修改要合并回 develop 分支。** (最后再删除 Release 分支)使用一个用于发布准备的专门分支，使得一个团队可以在完善当前的发布版本的同时，另一个团队可以继续开发下个版本的功能。 这也打造定义良好的开发阶段（比如，可以很轻松地说，『这周我们要做准备发布版本 4.0』，并且在仓库的目录结构中可以实际看到）。
 
 **常用的分支介绍**
 
@@ -202,12 +198,13 @@ hotfix 分支 修复完 bug 后，直接就删除了。也可以不需要 releas
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c880c306128d49e5a067a2fad9d66c0d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-维护分支或说是热修复（**hotfix**）分支用于生成快速给产品发布版本（**production releases**）打补丁，这是唯一可以直接从 master 分支 fork 出来的分支。 修复完成，修改应该马上合并回 master 分支和 develop 分支（当前的发布分支），master 分支应该用新的版本号打好 Tag。为 Bug 修复使用专门分支，让团队可以处理掉问题而不用打断其它工作或是等待下一个发布循环。 你可以把维护分支想成是一个直接在 master 分支上处理的临时发布。
+**维护分支或说是热修复（hotfix）分支用于生成快速给产品发布版本（production releases）打补丁，这是唯一可以直接从 master 分支 fork 出来的分支。** 修复完成，修改应该马上合并回 master 分支和 develop 分支（当前的发布分支），master 分支应该用新的版本号打好 Tag。为 Bug 修复使用专门分支，让团队可以处理掉问题而不用打断其它工作或是等待下一个发布循环。 你可以把维护分支想成是一个直接在 master 分支上处理的临时发布。
 
 ## 3 GItFlow 的实现
 
 ### 3.1 使用命令来实现
 
+1. 创建一个仓库
 ![在这里插入图片描述|400](https://img-blog.csdnimg.cn/666e49084b024a6d9a04544445dd6c38.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16)
 2. 然后 clone 项目
 
@@ -217,19 +214,19 @@ hotfix 分支 修复完 bug 后，直接就删除了。也可以不需要 releas
 git checkout -b develop  #基于当前分支
 ```
 
-初始化项目工程，创建 springBoot 项目
-
-提交分支到服务器上
+- 初始化项目工程，创建 springBoot 项目
+- 提交分支到服务器上
 
 ```
 git push --set-upstream origin develop
 ```
 
-初始化框架，加上 springBoot 框架及样例
+- 初始化框架，加上 springBoot 框架及样例
 
-以后这个分支将会包含了项目的全部历史，而 master 分支将包含了部分历史。其他开发者这时应该克隆中央仓库，建好 develop 分支的跟踪分支:
 
-1. 创建功能分支
+4. 以后这个分支将会包含了项目的全部历史，而 master 分支将包含了部分历史。其他开发者这时应该克隆中央仓库，建好 develop 分支的跟踪分支:
+
+- 创建功能分支
  **程序员 A**
 
 ```
@@ -239,7 +236,6 @@ git checkout -b feature/FEATURE-01 # 基于develop 分支创建功能分支
 git push -u origin feature/FEATURE-01
 
 ```
-
 - 做功能修改，添加功能
 - 提交
 - 程序员 A 完成了开发的功能。如果团队 使用 Pull requests ,这时候发起一个用于合并到 develop 分支。
