@@ -7,8 +7,8 @@ tag: null
 # GIT 常用命令
 
 ## start a working area (see also: git help tutorial)
-   clone     Clone a repository into a new directory
-   init      Create an empty Git repository or reinitialize an existing one
+   `clone`     Clone a repository into a new directory
+   `init`      Create an empty Git repository or reinitialize an existing one
 
 ## work on the current change (see also: git help everyday)
    add       Add file contents to the index
@@ -25,7 +25,7 @@ tag: null
    status    Show the working tree status
 
 ## grow, mark and tweak your common history
-   branch    List, create, or delete branches
+   `branch`    List, create, or delete branches
    commit    Record changes to the repository
    merge     Join two or more development histories together
    rebase    Reapply commits on top of another base tip
