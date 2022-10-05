@@ -27,11 +27,6 @@
       "icon": "superscript-glyph"
     },
     {
-      "id": "cmenu-plugin:subscript",
-      "name": "cMenu: Toggle subscript",
-      "icon": "subscript-glyph"
-    },
-    {
       "id": "cmenu-plugin:editor:toggle-code",
       "name": "cMenu: Toggle code",
       "icon": "code-glyph"
@@ -45,11 +40,16 @@
       "id": "cmenu-plugin:editor:toggle-checklist-status",
       "name": "cMenu: Toggle checklist status",
       "icon": "checkbox-glyph"
+    },
+    {
+      "id": "highlightr-plugin:Cyan",
+      "name": "Highlightr: Cyan",
+      "icon": "highlightr-pen-cyan"
     }
   ],
   "appendMethod": "workspace",
   "shouldShowMenuOnSelect": false,
-  "cMenuVisibility": false,
+  "cMenuVisibility": true,
   "cMenuBottomValue": 5.75,
   "cMenuNumRows": 9
 }

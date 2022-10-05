@@ -9,9 +9,21 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "2 学习中/GIT/未命名.md",
+            "file": "2 学习中/GIT/Gitflow 分支详解.md",
             "mode": "source",
             "source": true
+          }
+        }
+      },
+      {
+        "id": "6e05c2eacf96eedb",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "2 学习中/GIT/Gitflow 分支详解.md",
+            "mode": "preview",
+            "source": false
           }
         }
       }
@@ -61,7 +73,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 337
+    "width": 194,
+    "collapsed": true
   },
   "right": {
     "id": "1807a20ed70bdad1",
@@ -77,7 +90,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2 学习中/GIT/未命名.md",
+                "file": "2 学习中/GIT/Gitflow 分支详解.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +107,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2 学习中/GIT/未命名.md",
+                "file": "2 学习中/GIT/Gitflow 分支详解.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +130,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2 学习中/GIT/未命名.md"
+                "file": "2 学习中/GIT/Gitflow 分支详解.md"
               }
             }
           },
@@ -142,10 +155,11 @@
       }
     ],
     "direction": "horizontal",
-    "width": 299.5
+    "width": 257.5
   },
   "active": "267340340560c7c8",
   "lastOpenFiles": [
+    "2 学习中/GIT/未命名.md",
     "1 求职准备/01 Leetcode/01 Medium/_review 31 下一个排列.md",
     "1 求职准备/01 Leetcode/00 必会模板/堆排序.md",
     "1 求职准备/01 Leetcode/00 必会模板/二分基础.md",
@@ -154,7 +168,6 @@
     "index.md",
     "Obsidian/mkdocs.md",
     "3 阅读/RSA 实际应用到基础原理.md",
-    "Home.md",
-    "4 求职准备/02 操作系统/00 操作系统复习进度.md"
+    "Home.md"
   ]
 }
