@@ -13,10 +13,10 @@ git branch 和 git checkout 经常在一起使用，所以在此将它们合在�
 
 **一般用于分支的操作，比如创建分支，查看分支等等。**
 
-1.1 git branch
+1.1 `git branch`
 不带参数：列出本地已经存在的分支，并且在当前分支的前面用"\*"标记
 
-1.2 git branch -r
+1.2 `git branch -r`
 查看远程版本库分支列表
 
 1.3 `git branch -a`
@@ -49,13 +49,15 @@ git branch 和 git checkout 经常在一起使用，所以在此将它们合在�
 
 ### 2.2 操作分支
 
-```
-2.2.1 git checkout master 将分支切换到master
+2.2.1 `git checkout master` 
+将分支切换到master
 
-2.2.2 git checkout -b master 如果分支存在则只切换分支，若不存在则创建并切换到master分支，
+2.2.2 `git checkout -b master` 
+如果分支存在则只切换分支，若不存在则创建并切换到master分支
+
 repo start是对 git checkout -b 这个命令的封装，将所有仓库的分支都切换到master， master是分支名
-```
 
-2.3 查看帮助
-git checkout --help
+
+### 2.3 查看帮助
+`git checkout --help`
 当然 git checkout 还有许多命令, 但这些已经能满足我们日常开发所需了。
