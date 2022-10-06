@@ -173,9 +173,9 @@ body
 
 ### 1、开发新功能时 git 操作流程：
 
+新建分支：
 
 ```shell
-新建分支：
 
 git checkout dev # 进入 dev 分支
 
@@ -195,83 +195,99 @@ git commit -m "***' #（或者界面操作，只 commit,不要 push,除非该 fe
 
 合并分支前的工作：
 
-确保 feat-\*\*\*分支的代码都已 commit,或者 stash，如果 feat 分支为多人合作开发，还需要 git pull 拉取远程代码。
+确保 `feat-***` 分支的代码都已 commit,或者 stash，
+如果 feat 分支为多人合作开发，还需要 git pull 拉取远程代码。
 
-git checkout dev 切换到 dev 分支
+```shell
+git checkout dev # 切换到 dev 分支
 
-git pull 拉取 dev 新代码
+git pull # 拉取 dev 新代码
 
-git merge feat-\*\*\* 合并新开发分支
+git merge feat-*** # 合并新开发分支
+```
 
 当前 dev 分支包含了新功能的代码，打包发布测试环境，交测试人员测试，测试没问题合并到 master 分支，
 
-git checkout master 切换到 master 分支
+```shell
+git checkout master # 切换到 master 分支
 
-git pull master 拉取 master 最新代码
+git pull master # 拉取 master 最新代码
 
-git merge dev 合并 dev 分支代码
+git merge dev # 合并 dev 分支代码
 
-git tag -a v2.1.0 -m 'v2.1.0 发布版本' 为当前 master 节点打一个 v2.1.0 的标签
+git tag -a v2.1.0 -m 'v2.1.0 发布版本' # 为当前 master 节点打一个 v2.1.0 的标签
+```
+
 
 ### 2、修复 bug 时 git 操作流程：
 
 每一次版本发布我们都会为新版本打一个 tag,如果上个版本为 v2.1.0，则执行如下命令：
 
-git checkout -b fix-\*\*\* v2.1.0 以 v2.1.0 版本为基础创建修复分支 fix-\*\*\*
+```shell
+git checkout -b fix-*** v2.1.0 # 以 v2.1.0 版本为基础创建修复分支 fix-***
 
-进行 bug 修复工作......
+***进行 bug 修复工作......***
 
-中间及时提交代码 git add . git commit -m '\*\*\*' (或者界面操作，只 commit,不要 push,除非该 fix 是多人协作开发）
+# 中间及时提交代码 
+
+git add . 
+git commit -m '***' # (或者界面操作，只 commit,不要 push,除非该 fix 是多人协作开发）
+```
+
 
 修复工作完成后，打包发布测试环境，交开发人员测试，测试没问题将代码合并至 master
 
-git checkout master 切换至 master 分支
 
-git pull 拉取 master 代码
+```shell
+git checkout master # 切换至 master 分支
 
-git merge fix-\*\*\* 把修复的代码合并回 master 分支
+git pull # 拉取 master 代码
 
-git tag -a v2.1.1 -m 'v2.1.1 修复\*\*\*的发布版本' 为当前带发布的更新版本打 v2.1.1 的标签
+git merge fix-*** # 把修复的代码合并回 master 分支
 
-git log 查看 master 分支代码提交 id，记录下 bug 修复的 id
+git tag -a v2.1.1 -m 'v2.1.1 修复***的发布版本' # 为当前带发布的更新版本打 v2.1.1 的标签
 
-git checkout dev 切换至 dev 分支
+git log # 查看 master 分支代码提交 id，记录下 bug 修复的 id
 
-git pull 拉代码
+git checkout dev # 切换至 dev 分支
 
-git cherry-pick commitId 把 master 分支上的修复代码的那次提交合并到 dev 分支，这样修复的代码在 dev 和 master 上都有了
+git pull # 拉代码
 
-git branch -d fix-\*\*\*\* (删除临时修复分支)
+git cherry-pick commitId # 把 master 分支上的修复代码的那次提交合并到 dev 分支，这样修复的代码在 dev 和 master 上都有了
+
+git branch -d fix-**** # (删除临时修复分支)
+```
+
 
 ## 四、模拟一个完整的版本管理流程（必看）：
 
-git branch 查看当前分支状态：
+`git branch` 查看当前分支状态：
 
 ![](https://img-blog.csdnimg.cn/img_convert/63b8d4b5aadc923dca689b694b2a4e42.png)
 
-git pull （开始敲代码之前先同步大家的代码）
+`git pull` （开始敲代码之前先同步大家的代码）
 
-git checkout -b feat-yljgdm （切换到分支 feat-yljgdm，参数-b 的意思是如果没有分支自动创建该分支）
+`git checkout -b feat-yljgdm` （切换到分支 feat-yljgdm，参数-b 的意思是如果没有分支自动创建该分支）
 
 ![](https://img-blog.csdnimg.cn/img_convert/fbfaa5a087f976a0e40500920a6bdecf.png)
 
-git branch （查看分支状态，当前分支前面有一个星号）
+`git branch` （查看分支状态，当前分支前面有一个星号）
 
 ![](https://img-blog.csdnimg.cn/img_convert/399947b4c17d5cee546cc5c77c6dd623.png)
 
 之所以新建一个 feat 分支，而不是直接在 dev 上开发，是为了保证 dev 上面都是开发完成的功能，能做到随时合并到 master 分支并进行发布的状态。
 
-......创建类，写代码，等等等一系列操作.....然后提交代码，这种临时的小的分支，只需 commit,不要 push
+**......创建类，写代码，等等等一系列操作.....然后提交代码，这种临时的小的分支，只需 commit,不要 push**
 
 ![](https://img-blog.csdnimg.cn/img_convert/eb7879e076a77e436992b70c3912a127.png)
 
 这个时候突然接收到一个用户反馈的 bug,需要紧急修复，并与今晚发布。
 
-git checkout master （切换至主分支，切换分支之前，确保之前 feat 分支的代码已经 commit，否则切换其他分支后，这些没提交的代码也会带过去，因为没有提交到仓库的代码，git 是不会帮你管理的！！如果工作只进行一半代码还有问题确实不能提交。而别人又着急等着你去另一个分支解决问题，使用 git stash 命令把你当前分支未提交的代码隐藏起来。去其他分支干完活后再次来到你的分支，使用 git stash pop 命名恢复你上次的工作现场）
+`git checkout master` （切换至主分支，切换分支之前，确保之前 feat 分支的代码已经 commit，否则切换其他分支后，这些没提交的代码也会带过去，因为没有提交到仓库的代码，git 是不会帮你管理的！！如果工作只进行一半代码还有问题确实不能提交。而别人又着急等着你去另一个分支解决问题，使用 git stash 命令把你当前分支未提交的代码隐藏起来。去其他分支干完活后再次来到你的分支，使用 git stash pop 命名恢复你上次的工作现场）
 
 ![](https://img-blog.csdnimg.cn/img_convert/950493ad83c95cd6d141304f51f4ede1.png)
 
-git pull (更新主分支最新代码)
+`git pull` (更新主分支最新代码)
 
 ![](https://img-blog.csdnimg.cn/img_convert/f7ad3949a625032ae567a5278490ce9e.png)
 
@@ -283,99 +299,90 @@ git checkout -b fix-ztbz（从主分支创建修复分支）
 
 切换分支后发现，之前在 feat 分支上添加的内容已经已经看不到了
 
-\*
+*在新建的 fix 分支上愉快的敲代码改 bug*
 
-\*在新建的 fix 分支上愉快的敲代码改 bug\*\*\*\*
+![b9ac702494b175672f93eac0ee70fb60.png](https://img-blog.csdnimg.cn/img_convert/b9ac702494b175672f93eac0ee70fb60.png)
 
-\*![b9ac702494b175672f93eac0ee70fb60.png](https://img-blog.csdnimg.cn/img_convert/b9ac702494b175672f93eac0ee70fb60.png)
-
-git add, git commit （提交代码）
+`git add, git commit` （提交代码）
 
 ![](https://img-blog.csdnimg.cn/img_convert/a38de6332d95250095fa45cb3ebf01ba.png)
 
-mvn clean package (项目打包，交给测试人员，这样打出来的包，只有，上次发布的代码和 bug 修复的代码)
+`mvn clean package` (项目打包，交给测试人员，这样打出来的包，只有，上次发布的代码和 bug 修复的代码)
 
 测试没有问题：
 
-git tag -a v2.1.2 -m '修复 ztbz 为空的 bug' (保证每一次发布的版本都打标签)
+`git tag -a v2.1.2 -m '修复 ztbz 为空的 bug'` (保证每一次发布的版本都打标签)
 
 ![](https://img-blog.csdnimg.cn/img_convert/b357dfa2a004ed2b5cdf397e739f9bbc.png)
 
-git push origin v2.1.2（推送标签）
+`git push origin v2.1.2`（推送标签）
 
 ![](https://img-blog.csdnimg.cn/img_convert/ef70a98d3d2fc4624739fb08a96bdf4b.png)
 
-git checkout master(切换到 master 分支)
+`git checkout master`(切换到 master 分支)
 
 ![](https://img-blog.csdnimg.cn/img_convert/75de13f17c23c3dacf9c13edc3674fef.png)
 
-git pull origin master(拉取 master 最新代码)
+`git pull origin master`(拉取 master 最新代码)
 
-git merge fix-ztbz (把修复的代码合并到 master 分支)
+`git merge fix-ztbz` (把修复的代码合并到 master 分支)
 
-git branch -d fix-ztbz (删除临时分支)
+`git branch -d fix-ztbz` (删除临时分支)
 
 ![](https://img-blog.csdnimg.cn/img_convert/ff918c148fde4a2beaed31c78de42fad.png)
 
 修复 bug 的代码 master 里面已经有了，如何把这部分代码同步到 dev 分支呢：
 
-git log (master 分支查看变更记录，找到 bug 修复的那次提交，并得到 git 变更 id)
+`git log` (master 分支查看变更记录，找到 bug 修复的那次提交，并得到 git 变更 id)
 
 ![](https://img-blog.csdnimg.cn/img_convert/74db47a0fd97c0d97107d9e20457f3af.png)
 
-git checkout dev （切换至 dev 分支）
+`git checkout dev` （切换至 dev 分支）
 
-git cherry-pick d42e907ee4fb714e24fc0eb6c48b1265710a2ccb (通过 cherry-pick 命令将这次提交的代码复制到 dev 分支)
+`git cherry-pick d42e907ee4fb714e24fc0eb6c48b1265710a2ccb` (通过 cherry-pick 命令将这次提交的代码复制到 dev 分支)
 
-\*
+完事！可以通过 `git checkout feat-yljgdm` 命令切换到上次新功能开发的分支，继续搬砖。
 
-\*完事！可以通过 git checkout feat-yljgdm 命令切换到上次新功能开发的分支，继续搬砖。
 
-\*
+*过了两天，测试发现上次修复的 ztbz,把 0 和 1 搞反了，要求把状态标志定义成枚举或者常量，不要使用魔法值，但是上次的 fix-分支已经删掉了，如何找到上次修复的代码呢。上次修复完发布更新程序，我们打了个 tag*
 
-\*过了两天，测试发现上次修复的 ztbz,把 0 和 1 搞反了，要求把状态标志定义成枚举或者常量，不要使用魔法值，但是上次的 fix-分支已经删掉了，如何找到上次修复的代码呢。上次修复完发布更新程序，我们打了个 tag。
 
-\*
 
-\*
-
-git checkout -b fix-ztbz2 v2.1.2 (以标签 v2.1.2 为基础创建分支：fix-ztbz2)
+`git checkout -b fix-ztbz2 v2.1.2` (以标签 v2.1.2 为基础创建分支：fix-ztbz2)
 
 ![](https://img-blog.csdnimg.cn/img_convert/b2bbe76ae932ceb27419d6d750b32b61.png)
 
-git branch (已创建并切换至分支 fix-ztbz2)
+`git branch` (已创建并切换至分支 fix-ztbz2)
 
 ![](https://img-blog.csdnimg.cn/img_convert/17bffbed2ddc64a6f1f82636cec44f66.png)
 
 这时的分支状态为上次修复完 bug 后的代码。在此基础上继续修改。
 
-\*
-
-\*再次修复 bug
+再次修复 bug
 
 ![dbc152690e5cb0e97d3152ee37704e53.png](https://img-blog.csdnimg.cn/img_convert/dbc152690e5cb0e97d3152ee37704e53.png)
 
-git add . git commit -m 'fix:(修复状态标志 bug)'
+`git add . git commit -m 'fix:(修复状态标志 bug)'`
 
 ![](https://img-blog.csdnimg.cn/img_convert/de00f3e074776bbcab7fe6769b49d99e.png)
 
-mvn clean package 打包发布
+`mvn clean package` 打包发布
 
-git tag -a v2.1.3 -m '添加状态标志'
+`git tag -a v2.1.3 -m '添加状态标志'`
 
 ![](https://img-blog.csdnimg.cn/img_convert/3bcb0fcb3b2ca370727fc45ddbc3462d.png)
 
-git checkout master (切换到 master 分支)
+`git checkout master (切换到 master 分支)`
 
-git merge fix-ztbz2 (合并 fix-ztbz2 至 masterv 分支)
+`git merge fix-ztbz2 (合并 fix-ztbz2 至 masterv 分支)`
 
-git branch -d fix-ztbz2 (删除临时分支)
+`git branch -d fix-ztbz2 (删除临时分支)`
 
-可以看到再次修复 bug 的 git 过程，跟第一次修复 bug 很像，唯一的区别这次我们是从 tag 中创建的分支。
+**可以看到再次修复 bug 的 git 过程，跟第一次修复 bug 很像，唯一的区别这次我们是从 tag 中创建的分支。**
 
 bug 修复的工作做完了，现在回到新功能的开发：
 
-git checkout feat-yljgdm
+`git checkout feat-yljgdm`
 
 ....开始新的工作
 

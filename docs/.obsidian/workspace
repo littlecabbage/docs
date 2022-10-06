@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "2 学习中/GIT/GIT 规范.md",
+            "file": "2 学习中/GIT/Gitflow 分支详解.md",
             "mode": "source",
             "source": true
           }
@@ -61,8 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 255,
-    "collapsed": true
+    "width": 258
   },
   "right": {
     "id": "1807a20ed70bdad1",
@@ -78,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2 学习中/GIT/GIT 规范.md",
+                "file": "2 学习中/GIT/Gitflow 分支详解.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -95,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2 学习中/GIT/GIT 规范.md",
+                "file": "2 学习中/GIT/Gitflow 分支详解.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2 学习中/GIT/GIT 规范.md"
+                "file": "2 学习中/GIT/Gitflow 分支详解.md"
               }
             }
           },
@@ -147,8 +146,8 @@
   },
   "active": "267340340560c7c8",
   "lastOpenFiles": [
-    "2 学习中/GIT/GIT 命令/Git branch && Git checkout.md",
     "2 学习中/GIT/GIT 规范.md",
+    "2 学习中/GIT/GIT 命令/Git branch && Git checkout.md",
     "2 学习中/GIT/Gitflow 分支详解.md",
     "2 学习中/GIT/GIT 命令/GIT 常用命令.md",
     "2 学习中/GIT/(2条消息) git使用规范_子晨兄的博客-CSDN博客_git 规范.md",
