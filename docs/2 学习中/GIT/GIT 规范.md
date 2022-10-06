@@ -9,40 +9,37 @@
 
 ### 1.1 分支定义
 
-#### master 分支
+#### a. master 分支
 
 - 主分支，最稳定，功能最完整的分支，可以随时发布的代码
 - 以 Tag 标记一个版本，因此每一个 tag 都对应一个线上（生产）版本
 - master 分支一般由 dev 以及 fix 分支合并，不允在 master 分支直接提交代码！！
 
-#### dev 分支
+#### b. dev 分支
 
 - dev 分支始终保持功能最全、bug 修复后的代码，未发布正式前，功能最新最全的分支
 - 新功能开发必须基于 dev 分支创建新功能的 feat 分支
 
-#### feat 分支
+#### c. feat 分支
 
 - 开发新功能（feature）由 dev 为基础创建的新分支
 - <mark style="background: #ABF7F7A6;">分支命名规则：feat-功能特性，如：feat-profile</mark>
 - 该分支原则上不要提交到 git 中央库，功能开发测试完后，及时合并到 dev 分支，并删除该分支。但是如果一个新功能是和多人合作开发需将同步到 git 中央库。
 
-#### fix 分支
+#### d. fix 分支
 
 - 线上出现紧急 bug，需要及时修复，以 master 分支为基础，建 fix 分支，修复完成后，需要合并到 master 分支和 dev 分支，并删除该分支。
 - 分支命名规则：项目-fix-功能特性，如：fix-profile
 
-#### 补充
+#### e. 补充
 
 稳定且长期存在的分支只有 master 和 dev 分支，别的分支则在完成对应开发使命之后都会合并到这两个分支然后被删除。
 
-### 1.2 git 启用分支后的 标准流程及命令（后面有真实场景使用示例）
+### 1.2 git 启用分支后的标准流程及命令
 
-1.管理员创建 git 仓库，建立 master 分支，dev 分支
+1.管理员创建 git 仓库，建立 master 分支，dev 分支, 命令行创建如下： 
+```shell
 
-命令行创建如下： 
-
-
-```
 git branch master
 
 git push -u origin master
@@ -50,13 +47,12 @@ git push -u origin master
 git branch dev
 
 git push -u origin dev
-```
 
+```
 
 2.项目成员 clone 仓库，并建立自己的 feat 功能分支
+```shell
 
-
-```
 git clone 项目地址
 
 git fetch
@@ -64,17 +60,12 @@ git fetch
 git checkout dev
 ```
 
+创建本地功能分支 `git checkout -b 项目-feat-功能特性`
 
-创建本地功能分支 git checkout -b 项目-feat-功能特性
+3.在本地功能分支开发，`git add, git commit &etc`, 注意功能模块为完成测试之前，禁止合并到 dev 或者 master 上
 
-3.在本地功能分支开发，git add, git commit &etc,注意功能模块为完成测试之前，禁止合并到 dev 或者 master 上
-
-4.功能完成后可以直接合并本地的 dev 分支后 push 到远程 ，合并的时候很大几率 会发生冲突，此时需要合并代码，合并的确候确保不影响项目其他成员，如果多个人都操作了同一段代码，最好当面确认后 在进行修改。等合并完成确认无误后，删除本地 feat 开发分支
-
-命令行提示
-
-
-```
+4.功能完成后可以直接合并本地的 dev 分支后 push 到远程 ，合并的时候很大几率 会发生冲突，此时需要合并代码，合并的确候确保不影响项目其他成员，如果多个人都操作了同一段代码，最好当面确认后 在进行修改。等合并完成确认无误后，删除本地 feat 开发分支, 命令行提示: 
+```shell
 git checkout dev
 
 git pull origin dev
@@ -90,7 +81,7 @@ git branch -d 项目-feat-功能特性
 5.发布版本之后，为 master 打上 tag
 
 
-```
+```shell
 git checkout master
 
 git tag -a 0.1 -m "Initial public release" master
@@ -99,10 +90,8 @@ git push --tags
 ```
 
 
-7.bug 修复分支，如果正在开发功能的同时，dev 上线发现 bug，或者未上线发现的 bug，可以开一 个 fix 分支来修复 bug
-
-
-```
+6.bug 修复分支，如果正在开发功能的同时，dev 上线发现 bug，或者未上线发现的 bug，可以开一 个 fix 分支来修复 bug
+```shell
 git checkout -b fix-(bug-分支、特性)
 
 ** 修复完成 **
