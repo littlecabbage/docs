@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "2 学习中/GIT/Gitflow 分支详解.md",
+            "file": "1 求职准备/数据分析岗位分析.md",
             "mode": "source",
             "source": true
           }
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2 学习中/GIT/Gitflow 分支详解.md",
+                "file": "1 求职准备/数据分析岗位分析.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2 学习中/GIT/Gitflow 分支详解.md",
+                "file": "1 求职准备/数据分析岗位分析.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2 学习中/GIT/Gitflow 分支详解.md"
+                "file": "1 求职准备/数据分析岗位分析.md"
               }
             }
           },
@@ -146,9 +146,9 @@
   },
   "active": "267340340560c7c8",
   "lastOpenFiles": [
+    "2 学习中/GIT/Gitflow 分支详解.md",
     "2 学习中/GIT/GIT 规范.md",
     "2 学习中/GIT/GIT 命令/Git branch && Git checkout.md",
-    "2 学习中/GIT/Gitflow 分支详解.md",
     "2 学习中/GIT/GIT 命令/GIT 常用命令.md",
     "2 学习中/GIT/(2条消息) git使用规范_子晨兄的博客-CSDN博客_git 规范.md",
     "1 求职准备/01 Leetcode/01 Medium/_review 31 下一个排列.md",
