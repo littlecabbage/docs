@@ -1,5 +1,11 @@
 {
-  "theme": "moonstone",
+  "theme": "obsidian",
   "cssTheme": "Minimal",
-  "accentColor": ""
+  "accentColor": "",
+  "monospaceFontFamily": "",
+  "baseFontSize": 16,
+  "baseFontSizeAction": false,
+  "showViewHeader": false,
+  "translucency": false,
+  "nativeMenus": true
 }
