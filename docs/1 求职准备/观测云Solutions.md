@@ -24,3 +24,7 @@ y_pred = rf.predict(X_test)
 # 结果对比绘图
 y_test.assign(yhat=y_pred).plot()
 ```
+
+## 2. LSTM
+
+https://github.com/Tuniverj/Pytorch-lstm-forecast/blob/main/Myself-forecast.ipynb
