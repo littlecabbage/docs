@@ -1,11 +1,12 @@
 {
-  "theme": "moonstone",
+  "theme": "obsidian",
   "cssTheme": "Minimal",
-  "accentColor": "",
+  "accentColor": "#2ea7dc",
   "monospaceFontFamily": "",
   "baseFontSize": 16,
   "baseFontSizeAction": false,
   "showViewHeader": false,
   "translucency": false,
-  "nativeMenus": true
+  "nativeMenus": true,
+  "interfaceFontFamily": "Apple Braille"
 }
