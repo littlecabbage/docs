@@ -1,7 +1,7 @@
 ---
 Author: sync
 date: 2022-06-25 21:05 Saturday
-tag: review 单调栈
+tag: 算法/review 算法/单调栈
 ---
 
 ![[FigureBed%20🌄/Pasted/Pasted%20image%2020220625210525.png]]

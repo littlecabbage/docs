@@ -1,7 +1,7 @@
 ---
 Author: sync
 date: 2022-06-14 15:29 Tuesday
-tag: Raft 
+tag: 分布式/Raft 
 ---
 
 # 寻找一种易于理解的一致性算法（扩展版）

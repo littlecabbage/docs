@@ -1,7 +1,7 @@
 ---
 Author: sync
 date: 2022-06-26 10:42 Sunday
-tag: undo 
+tag: 算法/undo 
 ---
 ![](FigureBed%20🌄/Pasted/Pasted%20image%2020220626104413.png)
 

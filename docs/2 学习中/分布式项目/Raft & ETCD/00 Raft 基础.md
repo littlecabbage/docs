@@ -1,7 +1,7 @@
 ---
 Author: sync
 date: 2022-06-13 19:10 Monday
-tag: Raft
+tag: 分布式/Raft
 ---
 
 # 0. 复制状态机的概念

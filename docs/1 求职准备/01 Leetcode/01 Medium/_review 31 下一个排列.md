@@ -1,11 +1,11 @@
 ---
 Author: sync
 date: 2022-06-13 09:27 Monday
-tag: review
+tag: 算法/review
 date updated: 2022-10-03 22:11 Monday
 ---
 
-#脑筋急转弯
+#算法/脑筋急转弯
 
 # _review 31 下一个排列
 

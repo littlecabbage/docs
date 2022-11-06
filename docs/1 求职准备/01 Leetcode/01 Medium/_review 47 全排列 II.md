@@ -1,10 +1,10 @@
 ---
 Author: sync
 date: 2022-06-13 19:26 Monday
-tag: review
+tag: 算法/review
 ---
 
-#回溯
+#算法/回溯
 
 有问题的代码
 

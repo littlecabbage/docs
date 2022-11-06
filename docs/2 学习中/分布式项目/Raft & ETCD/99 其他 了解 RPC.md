@@ -1,7 +1,7 @@
 ---
 Author: sync
 date: 2022-06-13 19:12 Monday
-tag: Raft
+tag: 分布式/Raft
 ---
 
 [RPC（Remote Procedure Call）核心，万变不离其宗](https://baijiahao.baidu.com/s?id=1709082440305850192&wfr=spider&for=pc)

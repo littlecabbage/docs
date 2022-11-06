@@ -1,7 +1,7 @@
 ---
 Author: sync
 date: 2022-06-13 19:12 Monday
-tag: Raft
+tag: 分布式/Raft
 ---
 
 [# 解读共识算法Raft（合集）](https://www.bilibili.com/video/BV1pr4y1b7H5?spm_id_from=333.337.search-card.all.click&vd_source=ab2f866858f0016a32f6db0daf3438df)

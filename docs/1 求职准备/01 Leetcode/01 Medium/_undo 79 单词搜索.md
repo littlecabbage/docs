@@ -1,10 +1,10 @@
 ---
 Author: sync
 date: 2022-06-13 09:26 Monday
-tag: undo 
+tag: 算法/undo 
 ---
 
-#回溯
+#算法/回溯
 
 ![](FigureBed%20🌄/Pasted/Pasted%20image%2020220605223840.png)
 
