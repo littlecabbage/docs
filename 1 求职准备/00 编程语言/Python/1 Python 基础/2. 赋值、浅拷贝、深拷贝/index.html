@@ -1,0 +1,4060 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../../../FigureBed 🌄/source/github.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>2. 赋值、浅拷贝、深拷贝 - SYNC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CUbuntu+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/template/blog.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/template/grid.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/template/img-grids-floats.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/template/tooltipster.bundle.min.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/template/utils.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/admonition.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/custom_attributes.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/customization.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#一变量赋值理解" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="SYNC" class="md-header__button md-logo" aria-label="SYNC" data-md-component="logo">
+      
+  <img src="../../../../../FigureBed 🌄/source/nike.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SYNC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. 赋值、浅拷贝、深拷贝
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../1.%20%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-tabs__link md-tabs__link--active">
+        1 求职准备
+      </a>
+    </li>
+  
+
+  
+
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/GIT/GIT%20%E8%A7%84%E8%8C%83/" class="md-tabs__link">
+        2 学习中
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../3%20%E9%98%85%E8%AF%BB/RSA%20%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E5%88%B0%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86/" class="md-tabs__link">
+        3 阅读
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../4%20Obsidian/22-10-23%20%E5%BA%B7%E5%A5%88%E7%AC%94%E8%AE%B0%E6%B3%95/" class="md-tabs__link">
+        4 Obsidian
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../5%20%E6%9D%82/Parallels%20Desktop%2018.0.1%2053056%20%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B%EF%BC%88pd18%E6%B0%B8%E4%B9%85%E6%8E%88%E6%9D%83%EF%BC%89/" class="md-tabs__link">
+        5 杂
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../Linux/Ubuntu%20%E5%AE%89%E8%A3%85%20clashx/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../Webclip/%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E6%A8%A1%E5%9E%8B%E3%80%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="md-tabs__link">
+        Webclip
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="SYNC" class="md-nav__button md-logo" aria-label="SYNC" data-md-component="logo">
+      
+  <img src="../../../../../FigureBed 🌄/source/nike.svg" alt="logo">
+
+    </a>
+    SYNC
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          1 求职准备
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="1 求职准备" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1 求职准备
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          00 编程语言
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="00 编程语言" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          00 编程语言
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1_1" type="checkbox" id="__nav_2_1_1_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1_1">
+          1 Python 基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="1 Python 基础" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_1_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          1 Python 基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.%20%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        1. 可变数据类型 不可变数据类型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2. 赋值、浅拷贝、深拷贝
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        2. 赋值、浅拷贝、深拷贝
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1变量分类及理解" class="md-nav__link">
+    1、变量分类及理解
+  </a>
+  
+    <nav class="md-nav" aria-label="1、变量分类及理解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1变量类型" class="md-nav__link">
+    （1）变量类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2变量创建的理解" class="md-nav__link">
+    （2）变量创建的理解
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3可变变量与不可变变量的区分" class="md-nav__link">
+    （3）可变变量与不可变变量的区分：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4不可变变量的特点" class="md-nav__link">
+    （4）不可变变量的特点：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5可变变量的特点" class="md-nav__link">
+    （5）可变变量的特点：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2不可变变量赋值" class="md-nav__link">
+    2、不可变变量赋值
+  </a>
+  
+    <nav class="md-nav" aria-label="2、不可变变量赋值">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1不可变变量赋值" class="md-nav__link">
+    （1）不可变变量赋值
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2不可变变量间赋值" class="md-nav__link">
+    （2）不可变变量间赋值
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3可变变量赋值" class="md-nav__link">
+    3、可变变量赋值
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.%20%E5%AE%B9%E5%99%A8%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E7%94%9F%E6%88%90%E5%99%A8/" class="md-nav__link">
+        3. 容器、迭代器、生成器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.%20yield%20%E5%85%B3%E9%94%AE%E5%AD%97%E7%90%86%E8%A7%A3/" class="md-nav__link">
+        4. yield 关键字理解
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5.%20%E5%85%B3%E9%94%AE%E5%AD%97/" class="md-nav__link">
+        5. 关键字
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6.%20Python%E4%B8%AD%E7%9A%84%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="md-nav__link">
+        6. Python中的命名空间、生命周期与作用域
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1_2" type="checkbox" id="__nav_2_1_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1_2">
+          2 函数与模块
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2 函数与模块" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_1_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          2 函数与模块
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A8%A1%E5%9D%97/1.%20%E5%8F%82%E6%95%B0/" class="md-nav__link">
+        1. 参数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A8%A1%E5%9D%97/2.%20%E9%97%AD%E5%8C%85/" class="md-nav__link">
+        2. 闭包
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1_3" type="checkbox" id="__nav_2_1_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1_3">
+          3 面向对象
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="3 面向对象" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_1_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          3 面向对象
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/0.%20%E7%AE%80%E4%BB%8B%20Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        0. 简介 Python面向对象编程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1_4" type="checkbox" id="__nav_2_1_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1_4">
+          4 Python 与操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="4 Python 与操作系统" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_1_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          4 Python 与操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4%20Python%20%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/GIL%28%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81%29/" class="md-nav__link">
+        GIL(全局解释器锁)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          01 Leetcode
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="01 Leetcode" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          01 Leetcode
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1" type="checkbox" id="__nav_2_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1">
+          00 必会模板
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="00 必会模板" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          00 必会模板
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/00%20%E5%BF%85%E4%BC%9A%E6%A8%A1%E6%9D%BF/%E4%BA%8C%E5%88%86%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        二分基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/00%20%E5%BF%85%E4%BC%9A%E6%A8%A1%E6%9D%BF/%E5%A0%86%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        堆排序
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/00%20%E5%BF%85%E4%BC%9A%E6%A8%A1%E6%9D%BF/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        归并排序
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/00%20%E5%BF%85%E4%BC%9A%E6%A8%A1%E6%9D%BF/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        快速排序
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2">
+          01 Medium
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="01 Medium" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          01 Medium
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/101%20%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="md-nav__link">
+        101 对称二叉树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/102%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        102 二叉树的层序遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/103%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%94%AF%E9%BD%BF%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        103 二叉树的层序锯齿遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/105%20%E4%BB%8E%E5%89%8D%E5%BA%8F%E5%92%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="md-nav__link">
+        105 从前序和中序遍历构造二叉树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/11%20%E7%9B%9B%E6%B0%B4%E6%9C%80%E5%A4%9A%E7%9A%84%E5%AE%B9%E5%99%A8/" class="md-nav__link">
+        11 盛水最多的容器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/113%20%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%20II/" class="md-nav__link">
+        113 路径总和 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/114%20%20%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        114  二叉树展开为链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/1143%20%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        1143 最长公共子序列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/128%20%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        128 最长连续序列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/129%20%E6%B1%82%E6%A0%B9%E8%8A%82%E7%82%B9%E5%88%B0%E5%8F%B6%E8%8A%82%E7%82%B9%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/" class="md-nav__link">
+        129 求根节点到叶节点数字之和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/142%20%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%20II/" class="md-nav__link">
+        142 环形链表 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/143%20%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        143 重排链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/145%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        145 二叉树的后序遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/146%20LRU%20%E7%BC%93%E5%AD%98/" class="md-nav__link">
+        146 LRU 缓存
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/148%20%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        148 排序链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/15%20%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" class="md-nav__link">
+        15 三数之和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/165%20%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7/" class="md-nav__link">
+        165 比较版本号
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/189%20%E8%BD%AE%E8%BD%AC%E6%95%B0%E7%BB%84/" class="md-nav__link">
+        189 轮转数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/19%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9/" class="md-nav__link">
+        19 删除链表的倒数第 N 个结点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/198%20%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/" class="md-nav__link">
+        198 打家劫舍
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/199%20%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        199  二叉树的右视图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/2%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" class="md-nav__link">
+        2 两数相加
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/200%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/" class="md-nav__link">
+        200 岛屿数量
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/206%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        206 反转链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/215%20%E6%95%B0%E7%BB%84%E4%B8%AD%E7%AC%AC%20K%20%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" class="md-nav__link">
+        215 数组中第 K 个最大元素
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/22%20%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/" class="md-nav__link">
+        22 括号生成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/230%20%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%AC%20k%20%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/" class="md-nav__link">
+        230 二叉搜索树中第 k 小的元素
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/236%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" class="md-nav__link">
+        236 二叉树的最近公共祖先
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/24%20%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" class="md-nav__link">
+        24 两两交换链表中的节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/240%20%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%20II/" class="md-nav__link">
+        240 搜索二维矩阵 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/3%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" class="md-nav__link">
+        3 无重复字符的最长子串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/300%20%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%20%EF%BC%88%E4%BA%8C%E5%88%86%E4%BC%98%E5%8C%96%EF%BC%89/" class="md-nav__link">
+        300 最长递增子序列 （二分优化）
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/322%20%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2/" class="md-nav__link">
+        322 零钱兑换
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/328%20%E5%A5%87%E5%81%B6%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        328 奇偶链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/33%20%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/" class="md-nav__link">
+        33 搜索旋转数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/34%20%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/" class="md-nav__link">
+        34 在排序数组中查找元素的第一个和最后一个位置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/39%20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/" class="md-nav__link">
+        39 组合总和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/40%20%E7%BB%84%E5%90%88%E6%80%BB%E6%95%B0II/" class="md-nav__link">
+        40 组合总数II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/450%20%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" class="md-nav__link">
+        450 删除二叉搜索树中的节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/46%20%E5%85%A8%E6%8E%92%E5%88%97/" class="md-nav__link">
+        46 全排列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/470%20%E7%94%A8Rand7%20%E5%AE%9E%E7%8E%B0%20rand10/" class="md-nav__link">
+        470 用Rand7 实现 rand10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/498%20%E5%AF%B9%E8%A7%92%E7%BA%BF%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        498 对角线遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/5%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" class="md-nav__link">
+        5 最长回文子串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/50%20Pow%28x%2C%20n%29/" class="md-nav__link">
+        50 Pow(x, n)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/54%20%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/" class="md-nav__link">
+        54 螺旋矩阵
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/56%20%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4/" class="md-nav__link">
+        56 合并区间
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/59%20%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5%20II/" class="md-nav__link">
+        59 螺旋矩阵 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/62%20%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/" class="md-nav__link">
+        62 不同路径
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/64%20%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/" class="md-nav__link">
+        64 最小路径和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/662%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E5%AE%BD%E5%BA%A6/" class="md-nav__link">
+        662 二叉树的最大宽度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/74%20%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5/" class="md-nav__link">
+        74 搜索二维矩阵
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/78%20%E5%AD%90%E9%9B%86/" class="md-nav__link">
+        78 子集
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/8%20%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B4%E6%95%B0/" class="md-nav__link">
+        8  字符串转整数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/82%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20II/" class="md-nav__link">
+        82 删除链表中的重复元素 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/876%20%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/" class="md-nav__link">
+        876 链表的中间节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/92%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%20II/" class="md-nav__link">
+        92 反转链表 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/93%20%E5%A4%8D%E5%8E%9Fip%E5%9C%B0%E5%9D%80/" class="md-nav__link">
+        93 复原ip地址
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/98%20%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="md-nav__link">
+        98 验证二叉搜索树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/Medium/" class="md-nav__link">
+        1. undo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/_review%20151%20%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D/" class="md-nav__link">
+         review 151 反转字符串里的单词
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/_review%2031%20%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97/" class="md-nav__link">
+         review 31 下一个排列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/_review%2047%20%E5%85%A8%E6%8E%92%E5%88%97%20II/" class="md-nav__link">
+         review 47 全排列 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/_review%2084%20%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/" class="md-nav__link">
+         review 84 柱状图中最大的矩形
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/_review%2093%20%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/" class="md-nav__link">
+         review 93 复原IP地址
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/_undo%2061%20%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+         undo 61 旋转链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/_undo%2079%20%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/" class="md-nav__link">
+         undo 79 单词搜索
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/01%20Medium/_undo/" class="md-nav__link">
+         undo
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_3" type="checkbox" id="__nav_2_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_3">
+          02 Hard
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="02 Hard" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          02 Hard
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/02%20Hard/23.%20%E5%90%88%E5%B9%B6%20K%20%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        23. 合并 K 个排序链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/02%20Hard/42.%20%E6%8E%A5%E9%9B%A8%E6%B0%B4/" class="md-nav__link">
+        739 每日温度
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_4" type="checkbox" id="__nav_2_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_4">
+          03 奇奇怪怪
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="03 奇奇怪怪" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          03 奇奇怪怪
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/03%20%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/50%E4%BA%BF%E6%9D%A1URL%20%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E5%86%85%E5%AD%984G%EF%BC%8C%E6%B1%82%E7%9B%B8%E5%90%8CURL/" class="md-nav__link">
+        50亿条URL 两个文件内存4G，求相同URL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/03%20%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/c%2B%2B%20%E4%B8%AD%20string%20%E5%92%8C%20int%20%E4%B9%8B%E9%97%B4%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/" class="md-nav__link">
+        C++ 中 string 和 int 之间相互转换
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01%20Leetcode/%E5%BF%85%E5%88%B782%E9%A2%98/" class="md-nav__link">
+        必刷82 题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          观测云题目
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="观测云题目" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          观测云题目
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%A7%82%E6%B5%8B%E4%BA%91%E9%A2%98%E7%9B%AE/%E8%A7%82%E6%B5%8B%E4%BA%91%E7%AC%94%E8%AF%95/" class="md-nav__link">
+        观测云笔试
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%A7%82%E6%B5%8B%E4%BA%91%E9%A2%98%E7%9B%AE/%E8%A7%82%E6%B5%8B%E4%BA%91%E9%A2%98%E7%9B%AE/" class="md-nav__link">
+        观测云题目
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          2 学习中
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2 学习中" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2 学习中
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          GIT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GIT" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          GIT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/GIT/GIT%20%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        GIT 规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/GIT/Gitflow%20%E5%88%86%E6%94%AF%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        Gitflow 分支详解
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_3" type="checkbox" id="__nav_3_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_3">
+          GIT 命令
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GIT 命令" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          GIT 命令
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/GIT/GIT%20%E5%91%BD%E4%BB%A4/GIT%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        GIT 常用命令
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/GIT/GIT%20%E5%91%BD%E4%BB%A4/Git%20branch%20%26%26%20Git%20checkout/" class="md-nav__link">
+        Git branch && Git checkout
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          K8S
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="K8S" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          K8S
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/K8S/K8S%E7%B3%BB%E5%88%97%E4%B8%80%EF%BC%9A%20%E6%A6%82%E5%BF%B5%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        I. K8S 概览
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          分布式项目
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="分布式项目" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          分布式项目
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_1" type="checkbox" id="__nav_3_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_1">
+          01 GO
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="01 GO" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          01 GO
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/1.%20Hello%20World%EF%BC%81/" class="md-nav__link">
+        1. Hello World！
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/10.%20GO%20%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        10. GO 接口
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/11.%20GO%20%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="md-nav__link">
+        11. GO 错误处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/12.%20GO%20%E5%B9%B6%E5%8F%91/" class="md-nav__link">
+        12. GO 并发
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/13.%20GO%20channel%20%E9%80%9A%E9%81%93/" class="md-nav__link">
+        13. GO channel 通道
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/2.%20%E5%8F%98%E9%87%8F%E7%9A%84%203%20%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        2. 变量的 3 种方式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/3.%20GO%20%E5%B8%B8%E9%87%8F/" class="md-nav__link">
+        3. GO 常量
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/4.%20GO%20%E8%AF%AD%E8%A8%80%E8%BF%90%E7%AE%97%E7%AC%A6/" class="md-nav__link">
+        4. GO 语言运算符
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/5%20%E5%88%86%E9%92%9F%E9%80%9F%E9%80%9A%20GO%20%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        1. Hello World！
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/5.%20GO%20%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        5. GO 函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/5.%20GO%20%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5/" class="md-nav__link">
+        5. GO 条件语句
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/6.%20GO%20%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" class="md-nav__link">
+        6. GO 循环语句
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/6.%20GO%20%E6%95%B0%E7%BB%84/" class="md-nav__link">
+        6. GO 数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/7.%20GO%20%E5%88%87%E7%89%87%EF%BC%88Slice%EF%BC%89/" class="md-nav__link">
+        7. GO 切片（Slice）
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/8.%20GO%20Range%20%E8%AF%AD%E8%A8%80%E8%8C%83%E5%9B%B4/" class="md-nav__link">
+        8. GO Range 语言范围
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/9.%20GO%20Map%20%E9%9B%86%E5%90%88/" class="md-nav__link">
+        9. GO Map 集合
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_2" type="checkbox" id="__nav_3_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_2">
+          02 K8S
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="02 K8S" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          02 K8S
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/02%20K8S/1-1%20%E5%88%86%E9%92%9F%E9%80%9F%E9%80%9A%20Kubernets/" class="md-nav__link">
+        0. 其他
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/02%20K8S/2-3%20%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        2 3 网络通讯方式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/02%20K8S/6%20Service/" class="md-nav__link">
+        6 Service
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/02%20K8S/K8S%E7%B3%BB%E5%88%97%E4%B8%80%EF%BC%9A%E6%A6%82%E5%BF%B5%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        I. K8S 概览
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_3" type="checkbox" id="__nav_3_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_3">
+          Raft & ETCD
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Raft & ETCD" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Raft & ETCD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/00%20Raft%20%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        0. 复制状态机的概念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/01%20%E9%97%AE%E9%A2%981%20%E9%A2%86%E5%AF%BC%E8%80%85%E9%80%89%E4%B8%BE/" class="md-nav__link">
+        01 问题1 领导者选举
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/02%20%E9%97%AE%E9%A2%982%20%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6/" class="md-nav__link">
+        02 问题2 日志复制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/03%20%E9%97%AE%E9%A2%983%20%E5%AE%89%E5%85%A8%E6%80%A7/" class="md-nav__link">
+        Raft 论文摘录： 5.4 安全性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/04%20%E9%97%AE%E9%A2%984%20%E9%9B%86%E7%BE%A4%E6%88%90%E5%91%98%E5%8F%98%E5%8C%96/" class="md-nav__link">
+        04 问题4 集群成员变化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/99%20%E5%85%B6%E4%BB%96%20%E4%BA%86%E8%A7%A3%20RPC/" class="md-nav__link">
+        99 其他 了解 RPC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/Raft%20%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        Raft 视频笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/Raft%20%E8%AE%BA%E6%96%87%E4%B8%AD%E6%96%87%E7%89%88%E6%9C%AC/" class="md-nav__link">
+        寻找一种易于理解的一致性算法（扩展版）
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_4" type="checkbox" id="__nav_3_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_4">
+          分布式范型简介与了解
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="分布式范型简介与了解" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          分布式范型简介与了解
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/%E5%88%86%E5%B8%83%E5%BC%8F%E8%8C%83%E5%9E%8B%E7%AE%80%E4%BB%8B%E4%B8%8E%E4%BA%86%E8%A7%A3/Hadoop%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B/" class="md-nav__link">
+        Hadoop大数据处理框架简介
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../2%20%E5%AD%A6%E4%B9%A0%E4%B8%AD/%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/%E5%88%86%E5%B8%83%E5%BC%8F%E8%8C%83%E5%9E%8B%E7%AE%80%E4%BB%8B%E4%B8%8E%E4%BA%86%E8%A7%A3/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%90%88%E9%9B%86/" class="md-nav__link">
+        大数据合集
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          3 阅读
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="3 阅读" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3 阅读
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../3%20%E9%98%85%E8%AF%BB/RSA%20%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E5%88%B0%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        RSA 实际应用到基础原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          运维工程师有前途吗
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="运维工程师有前途吗" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          运维工程师有前途吗
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../3%20%E9%98%85%E8%AF%BB/%E8%BF%90%E7%BB%B4%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%9C%89%E5%89%8D%E9%80%94%E5%90%97/%E8%BF%90%E7%BB%B4%2C%E6%94%BE%E8%BF%87%E7%9B%91%E6%8E%A7-%E4%B9%9F%E6%94%BE%E8%BF%87%E8%87%AA%E5%B7%B1%E5%90%A7/" class="md-nav__link">
+        运维,放过监控 也放过自己吧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../3%20%E9%98%85%E8%AF%BB/%E8%BF%90%E7%BB%B4%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%9C%89%E5%89%8D%E9%80%94%E5%90%97/%E8%BF%90%E7%BB%B4%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%9C%89%E5%89%8D%E9%80%94%E4%B9%88%EF%BC%9F/" class="md-nav__link">
+        运维工程师有前途么？
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          4 Obsidian
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="4 Obsidian" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4 Obsidian
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../4%20Obsidian/22-10-23%20%E5%BA%B7%E5%A5%88%E7%AC%94%E8%AE%B0%E6%B3%95/" class="md-nav__link">
+        22 10 23 康奈笔记法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../4%20Obsidian/mkdocs/" class="md-nav__link">
+        Mkdocs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../4%20Obsidian/%E7%AE%80%E6%82%A6/" class="md-nav__link">
+        简悦
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          5 杂
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="5 杂" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          5 杂
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../5%20%E6%9D%82/Parallels%20Desktop%2018.0.1%2053056%20%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B%EF%BC%88pd18%E6%B0%B8%E4%B9%85%E6%8E%88%E6%9D%83%EF%BC%89/" class="md-nav__link">
+        Parallels Desktop 18.0.1 53056 破解教程（pd18永久授权）
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Linux/Ubuntu%20%E5%AE%89%E8%A3%85%20clashx/" class="md-nav__link">
+        Ubuntu 安装 clashx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Linux/Ubuntu%20%E5%AE%89%E8%A3%85%20ssh/" class="md-nav__link">
+        Ubuntu 安装 ssh
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Webclip
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webclip" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Webclip
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Webclip/%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E6%A8%A1%E5%9E%8B%E3%80%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+        时序预测的三种方式：统计学模型、机器学习、循环神经网络
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1变量分类及理解" class="md-nav__link">
+    1、变量分类及理解
+  </a>
+  
+    <nav class="md-nav" aria-label="1、变量分类及理解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1变量类型" class="md-nav__link">
+    （1）变量类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2变量创建的理解" class="md-nav__link">
+    （2）变量创建的理解
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3可变变量与不可变变量的区分" class="md-nav__link">
+    （3）可变变量与不可变变量的区分：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4不可变变量的特点" class="md-nav__link">
+    （4）不可变变量的特点：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5可变变量的特点" class="md-nav__link">
+    （5）可变变量的特点：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2不可变变量赋值" class="md-nav__link">
+    2、不可变变量赋值
+  </a>
+  
+    <nav class="md-nav" aria-label="2、不可变变量赋值">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1不可变变量赋值" class="md-nav__link">
+    （1）不可变变量赋值
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2不可变变量间赋值" class="md-nav__link">
+    （2）不可变变量间赋值
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3可变变量赋值" class="md-nav__link">
+    3、可变变量赋值
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<blockquote>
+<p>created: 2022-09-18T16:56:06<br />
+tags: [python 中 xisy]<br />
+source: <a href="https://blog.csdn.net/weixin_44367283/article/details/123870827">原文地址</a><br />
+author:</p>
+</blockquote>
+<hr />
+<p><strong>python 变量类型、赋值以及拷贝的深入理解_生命不息，前进不止的博客-CSDN 博客_python 中 xisy</strong></p>
+<h1 id="一变量赋值理解">一、变量赋值理解<a class="headerlink" href="#一变量赋值理解" title="Permanent link">&para;</a></h1>
+<h2 id="1变量分类及理解">1、变量分类及理解<a class="headerlink" href="#1变量分类及理解" title="Permanent link">&para;</a></h2>
+<p>Python 是“万物皆对象”的理念，所以没有指针和引用的概念，导致很多时候参数的传递和调用的时候会产生疑问：我到底是复制了一份新的做操作还是在它指向的 <a href="https://so.csdn.net/so/search?q=%E5%86%85%E5%AD%98&amp;spm=1001.2101.3001.7020">内存</a> 操作？这个问题根本上和可变、不可变变量有关。</p>
+<h3 id="1变量类型">（1）变量类型<a class="headerlink" href="#1变量类型" title="Permanent link">&para;</a></h3>
+<p>所有的变量都可以按可变、不可变变量来分类，那么我将常用的一些变量类型进行分类。<br />
+- <strong>常见的不可变变量</strong><br />
+<a href="https://so.csdn.net/so/search?q=%E6%95%B4%E5%9E%8B&amp;spm=1001.2101.3001.7020">整型</a> 、浮点型、布尔型、复数、字符串、元组</p>
+<ul>
+<li><strong>常见的可变变量</strong><br />
+列表、 <a href="https://so.csdn.net/so/search?q=%E9%9B%86%E5%90%88&amp;spm=1001.2101.3001.7020">集合</a> 、字典、其他迭代器</li>
+</ul>
+<h3 id="2变量创建的理解">（2）变量创建的理解<a class="headerlink" href="#2变量创建的理解" title="Permanent link">&para;</a></h3>
+<p>首先我们需要明白变量是如何被创建的，这对理解变量赋值及可变不可变的区别有很大帮助<br />
+- <strong>不可变变量</strong><br />
+对于不可变变量来说，python 解释器会判断**该值在内存中是否存在**，若不存在，python 会分配内存，在内存中创建该值，然后看变量是否存在，若不存在就创建变量，最后把该值赋值给变量。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div></td></tr></table></div>
+<p>如上情况，此时 x 与 y 的关系是什么呢？</p>
+<p>执行 x=1 时，python 会分配内存，在内存中创建数字 1，然后创建 x，最后把 1 赋值给 x；<mark style="background: #ABF7F7A6;">当执行 y=1 时，1 已经在内存中被创建了，就不会再创建了，</mark>会**直接将刚才就创建好的 1 赋值给 y，我们可以通过 id 或者 is 来判断 x 与 y 是否在内存中是同一个地址。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="ow">is</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Result</span>
+<span class="kc">True</span>
+<span class="kc">True</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>可变变量</strong></li>
+</ul>
+<p>可变变量的创建与不可变变量是完全相反的，每次创建时 python 都会分配新的内存空间来存储列表，所以内存空间内会存在相同的值。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+<span class="c1"># Result</span>
+<span class="kc">False</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="3可变变量与不可变变量的区分">（3）可变变量与不可变变量的区分：<a class="headerlink" href="#3可变变量与不可变变量的区分" title="Permanent link">&para;</a></h3>
+<p>按照我的个人理解，可变变量（mutable variable）就是内存中内容可以被修改的变量，而不可变变量（immutable variable）就是内存中内容不可以被修改的变量。</p>
+<p>听起来比较抽象。我们可以把变量名理解为一个指针或者引用，他们都指向了内存中的一块空间。比如上节中 x 和 y 同时指向了 1 的那块空间，a 指向了[1,2,3]的那部分。那么如何理解内存中的内容可以被修改呢？对于一个 int 型的变量，我创建了 1，那么这之后***任何在这个作用域中所有被赋为 1 的变量都会指向它，而外部没有方法来把这个内存中的内容改成 2 或者其他值***。而对于列表来说，那块[1,2,3]我随时可以把他改为[1,2,3,4]，这就是内存中内容可以被修改。</p>
+<h3 id="4不可变变量的特点">（4）不可变变量的特点：<a class="headerlink" href="#4不可变变量的特点" title="Permanent link">&para;</a></h3>
+<ul>
+<li>优点：这样可以减少重复的值对内存空间的占用。</li>
+<li>缺点：我要修改这个变量绑定的值，如果内存中没用存在该值的内存块，那么必须重新开辟一块内存，把新地址与变量名绑定。而不是修改变量原来指向的内存块的值，这回给执行效率带来一定的降低。</li>
+</ul>
+<h3 id="5可变变量的特点">（5）可变变量的特点：<a class="headerlink" href="#5可变变量的特点" title="Permanent link">&para;</a></h3>
+<ul>
+<li>缺点：创建一次就开辟一次地址，不会引用同一块内存，所以会比不可变变量占用内存空间。</li>
+</ul>
+<h2 id="2不可变变量赋值">2、不可变变量赋值<a class="headerlink" href="#2不可变变量赋值" title="Permanent link">&para;</a></h2>
+<h3 id="1不可变变量赋值">（1）不可变变量赋值<a class="headerlink" href="#1不可变变量赋值" title="Permanent link">&para;</a></h3>
+<p>python 是一门很特殊的语言，变量在声明的时候并不定义它的类型，而是通过赋值的类型体现出来，所以一般 python 变量在声明时需要赋初值，。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div></td></tr></table></div>
+<p>在 C 语言中, 给变量赋值时，需要先**指定数据类型**，同时会**开辟一块内存区域**，用于存储值；而在 Python 中，“变量”的严格叫法是“名字(name)”，也可以理解为标签，就像每个人的姓名一样,只是标记我们的一个标签。<strong>这种方式是和 python“万物皆对象”的思想相契合的。</strong></p>
+<p><img alt="" src="https://img-blog.csdnimg.cn/7f30535271a9493a930c98085c45a568.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55Sf5ZG95LiN5oGv77yM5YmN6L-b5LiN5q2i,size_12,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>从上面可以看到，在 python 中，当执行: a = 1<br />
+<strong>python 首先会在分配一段内存空间用来创建 int 型对象“1”，然后用 a 指向它；</strong></p>
+<h3 id="2不可变变量间赋值">（2）不可变变量间赋值<a class="headerlink" href="#2不可变变量间赋值" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">aa</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div></td></tr></table></div>
+<p>变量 a 被赋值，意味着 a 指向了内存中的 int 类对象 1 的，变量 b 赋值变量 a，并不代表 b 指向了变量 a，而是变量 b 同时也指向了 int 类对象 1，此时，对象 1 可通过 a 或 b 引用，**此时 a 和 b 的地址和值都是一样的，**当变量 a 修改赋值时，只是代表变量 a 与其对象的指向关系发生了变化，变量 a 指向新的对象 2，并不会影响 b 的指向关系，所以最终的输出结果为：a = 2，b = 1。</p>
+<p><img alt="" src="https://img-blog.csdnimg.cn/d020848d275e4db39b4f940c2dbff957.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55Sf5ZG95LiN5oGv77yM5YmN6L-b5LiN5q2i,size_14,color_FFFFFF,t_70,g_se,x_16" /></p>
+<h2 id="3可变变量赋值">3、可变变量赋值<a class="headerlink" href="#3可变变量赋值" title="Permanent link">&para;</a></h2>
+<p>以列表为例：可变变量间赋值的话，a 和 c 的地址 id 相同，变量 a 的内容修改后，c 的内容相应变化。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;id(a) == id(c) ：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;id(a) == id(b) ：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;id(a) == id(c) ：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h1 id="二函数的参数传递">二、函数的参数传递<a class="headerlink" href="#二函数的参数传递" title="Permanent link">&para;</a></h1>
+<h2 id="1不可变变量传参">1、不可变变量传参<a class="headerlink" href="#1不可变变量传参" title="Permanent link">&para;</a></h2>
+<p>不可变变量作为函数参数传参时，是不会改变外部变量的值，这里可以理解为，不可变变量作为参数传参时仅传递值。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">test</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># 结果</span>
+<span class="mi">2</span>
+<span class="mi">1</span>
+</code></pre></div></td></tr></table></div>
+<p>这里把形参 g 传递到函数中，相当于执行 a = g ,这时 a 和 g 指向同一个对象，<strong>在函数内部给 a 重新赋值，其实是让 a 重新指向一个新的对象，并不会对 g 的值造成影响。</strong></p>
+<h2 id="2可变变量传参">2、可变变量传参<a class="headerlink" href="#2可变变量传参" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">test</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># 结果</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>为什么这次就可以用函数改变外部变量呢？对可变变量，本身内容就可以被修改，那么在函数内部也允许修改本身，因此传递进函数的是该内存空间的引用，对该参数操作，这时候就能修改外部变量了。</p>
+<p>所以，在 python 中，函数能不能修改外部变量，主要看这个变量的类型是可修改的还是不可修改的。</p>
+<h2 id="3拷贝的区别">3、拷贝的区别<a class="headerlink" href="#3拷贝的区别" title="Permanent link">&para;</a></h2>
+<p>在函数传参时，我们时而需要修改外部的变量，时而不需要修改外部的变量，所以这个时候我们就需要用到拷贝了。拷贝的方式有两种，copy 和 deepcopy，那么二者的区别就在于可变、不可变对象。</p>
+<h3 id="1-不可变变量">(1) 不可变变量<a class="headerlink" href="#1-不可变变量" title="Permanent link">&para;</a></h3>
+<p><mark style="background: #ABF7F7A6;">copy 和 deepcopy 对于不可变对象来说是没有区别的，都是把指向内存已有的空间的引用进行拷贝。</mark></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># copy拷贝</span>
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">id_b</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">copy</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;id(a) == id(b) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">id_b</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">test</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># 结果</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="mi">10</span>
+<span class="mi">0</span>
+
+<span class="o">---</span>
+
+<span class="c1"># deepcopy拷贝</span>
+<span class="k">def</span> <span class="nf">test1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">id_b</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">copy</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;id(a) == id(b) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">id_b</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">test1</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># 结果</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="mi">10</span>
+<span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="2-可变变量子对象是不可变变量">(2) 可变变量（子对象是不可变变量）<a class="headerlink" href="#2-可变变量子对象是不可变变量" title="Permanent link">&para;</a></h3>
+<p>但对于可变对象，copy 是拷贝指向内存已有空间的引用，而 deepcopy 才是新开辟一块空间，将原来的内容完全拷贝，然后返回新的空间的引用。</p>
+<p><strong>copy（浅拷贝）&amp; deepcopy（深拷贝）【结果完全一致】</strong></p>
+<p>当拷贝的可变变量的子变量是不可变变量时，对自变量进行修改，如下原始变量 b 和拷贝后的变量 a，分别指向子变量，当进行修改 a[0]时，可以看做 a[0]和 b[0]分别为指向 1 的变量，此时，修改 a[0]为 10，会给 10 重新分配存储空间，也就是 a[0]指向 10 的存储空间，b[0]的指向关系不会有变化。此处可参考 <a href="https://blog.csdn.net/weixin_44367283/article/details/123870827#2%E3%80%81%E5%8F%98%E9%87%8F%E9%97%B4%E8%B5%8B%E5%80%BC%E7%90%86%E8%A7%A3">（2）不可变变量间赋值</a></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 说明：拷贝后，此时a开辟了新的空间(并不是指向了b的引用)，</span>
+<span class="c1"># 但是 a [0] 、a [1]、a [2]只是分别指向了变量1、2、3的引用</span>
+
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">id_b</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝前id(a)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+    <span class="kn">import</span> <span class="nn">copy</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="c1"># a = copy.deepcopy(a)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后id(a)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后id(a[0]) == id(b[0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">id_b</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝前id(b)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 id(a)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 id(b)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 id(a[0]) == id(b[0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 id(a[1]) == id(b[1]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># 结果</span>
+
+<span class="n">拷贝前id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">3089483811072</span>
+<span class="n">拷贝前id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">3089483811072</span>
+<span class="n">拷贝后id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">3089483811328</span>
+<span class="n">拷贝后id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">修改后</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">3089483811328</span>
+<span class="n">修改后</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">3089483811072</span>
+<span class="n">修改后</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">False</span>
+<span class="n">修改后</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="https://img-blog.csdnimg.cn/d1557e63eccf415d9bb76064a194c8f9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55Sf5ZG95LiN5oGv77yM5YmN6L-b5LiN5q2i,size_15,color_FFFFFF,t_70,g_se,x_16" /></p>
+<h3 id="3-可变变量子对象是可变变量">(3) 可变变量（子对象是可变变量）<a class="headerlink" href="#3-可变变量子对象是可变变量" title="Permanent link">&para;</a></h3>
+<h4 id="copy浅拷贝">copy（浅拷贝）<a class="headerlink" href="#copy浅拷贝" title="Permanent link">&para;</a></h4>
+<p>当对可变变量进行浅拷贝，其子对象是可变变量时，拷贝的则是可变子对象的引用，可以理解为**仅拷贝了空间引用关系**，当不可变子对象进行修改时，会重新开辟空间存储，并建立新的引用关系；当可变子对象进行修改时，会直接修改，但是引用关系没有变化。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝前id(a)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+    <span class="kn">import</span> <span class="nn">copy</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后id(b)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后id(a)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后不可变变量 id(a[0]) == id(b[0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后可变变量 id(a[2]) == id(b[2]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后可变变量 id(a[2][0]) == id(b[2][0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后可变变量 id(a[2][2]) == id(b[2][2]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后可变变量 id(a[2][2][0]) == id(b[2][2][0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝前id(b)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 id(a)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 id(b)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 不可变变量 id(a[0]) == id(b[0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 可变变量 id(a[2]) == id(b[2]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 可变变量 id(a[2][0]) == id(b[2][0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;未修改 变量 id(a[1]) == id(b[1]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># 结果</span>
+<span class="n">拷贝前id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">2480675678720</span>
+<span class="n">拷贝前id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">2480675678720</span>
+<span class="n">拷贝后id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">2480675678720</span>
+<span class="n">拷贝后id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">2480675678272</span>
+<span class="n">拷贝后不可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">拷贝后可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">拷贝后可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">拷贝后可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">拷贝后可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">修改后</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">2480675678272</span>
+<span class="n">修改后</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">2480675678720</span>
+<span class="n">修改后</span> <span class="n">不可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">False</span>
+<span class="n">修改后</span> <span class="n">可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">修改后</span> <span class="n">可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">未修改</span> <span class="n">变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]]</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]]</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="https://img-blog.csdnimg.cn/86ea6f5204764deb89e56f05f6148ce7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55Sf5ZG95LiN5oGv77yM5YmN6L-b5LiN5q2i,size_16,color_FFFFFF,t_70,g_se,x_16" /></p>
+<h4 id="deepcopy深拷贝">deepcopy（深拷贝）<a class="headerlink" href="#deepcopy深拷贝" title="Permanent link">&para;</a></h4>
+<p>当对可变变量进行深拷贝，其子对象是可变变量时，会给拷贝的可变子对象分配新的空间，并返回新的引用，修改拷贝后的变量，不会影响拷贝前的变量。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝前id(a)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+    <span class="kn">import</span> <span class="nn">copy</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后id(b)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后id(a)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后不可变变量 id(a[0]) == id(b[0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后可变变量 id(a[2]) == id(b[2]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后可变变量 id(a[2][0]) == id(b[2][0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后可变变量 id(a[2][2]) == id(b[2][2]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝后可变变量 id(a[2][2][0]) == id(b[2][2][0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;拷贝前id(b)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 id(a)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 id(b)是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 不可变变量 id(a[0]) == id(b[0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 可变变量 id(a[2]) == id(b[2]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;修改后 可变变量 id(a[2][0]) == id(b[2][0]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;未修改 变量 id(a[1]) == id(b[1]) 是：</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># 结果</span>
+<span class="n">拷贝前id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">1733009275136</span>
+<span class="n">拷贝前id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">1733009275136</span>
+<span class="n">拷贝后id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">1733009275136</span>
+<span class="n">拷贝后id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">1733009274688</span>
+<span class="n">拷贝后不可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">拷贝后可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">False</span>
+<span class="n">拷贝后可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">拷贝后可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">False</span>
+<span class="n">拷贝后可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="n">修改后</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">1733009274688</span>
+<span class="n">修改后</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="mi">1733009275136</span>
+<span class="n">修改后</span> <span class="n">不可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">False</span>
+<span class="n">修改后</span> <span class="n">可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">False</span>
+<span class="n">修改后</span> <span class="n">可变变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">False</span>
+<span class="n">未修改</span> <span class="n">变量</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="n">是</span><span class="err">：</span><span class="o">%</span><span class="n">s</span> <span class="kc">True</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]]</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]]</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="https://img-blog.csdnimg.cn/83dd2f3433f44d0bb4eaed89552495cb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA55Sf5ZG95LiN5oGv77yM5YmN6L-b5LiN5q2i,size_16,color_FFFFFF,t_70,g_se,x_16" /></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../1.%20%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 1. 可变数据类型 不可变数据类型" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              1. 可变数据类型 不可变数据类型
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../3.%20%E5%AE%B9%E5%99%A8%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E7%94%9F%E6%88%90%E5%99%A8/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3. 容器、迭代器、生成器" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              3. 容器、迭代器、生成器
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 SYNC
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://github.com/littlecabbage" target="_blank" rel="noopener" title="github of sync" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    <a href="mailto:<zengzh1997@126.com>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6l-126.3-52.5-40.1 74.5c-5.2 9.7-16.3 14.6-27 11.9S192 499 192 488v-96c0-5.3 1.8-10.5 5.1-14.7l165.3-212.6c2.5-7.1-6.5-14.3-13-8.4l-179 161.9-32 28.9c-9.2 8.3-22.3 10.6-33.8 5.8l-85-35.4C8.4 312.8.8 302.2.1 290s5.5-23.7 16.1-29.8l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.top", "toc.follow", "search.suggest", "search.highlight"], "search": "../../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../../../../assets/js/mathjax.js"></script>
+      
+        <script src="../../../../../assets/js/utils.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../../../assets/js/tooltipster.bundle.js"></script>
+      
+    
+  </body>
+</html>

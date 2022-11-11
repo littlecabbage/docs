@@ -1,0 +1,4141 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../FigureBed 🌄/source/github.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Gitflow 分支详解 - SYNC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CUbuntu+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/template/blog.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/template/grid.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/template/img-grids-floats.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/template/tooltipster.bundle.min.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/template/utils.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/admonition.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/custom_attributes.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/customization.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gitflow-分支详解" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="SYNC" class="md-header__button md-logo" aria-label="SYNC" data-md-component="logo">
+      
+  <img src="../../../FigureBed 🌄/source/nike.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SYNC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gitflow 分支详解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/1%20Python%20%E5%9F%BA%E7%A1%80/1.%20%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-tabs__link">
+        1 求职准备
+      </a>
+    </li>
+  
+
+  
+
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../GIT%20%E8%A7%84%E8%8C%83/" class="md-tabs__link md-tabs__link--active">
+        2 学习中
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../3%20%E9%98%85%E8%AF%BB/RSA%20%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E5%88%B0%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86/" class="md-tabs__link">
+        3 阅读
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../4%20Obsidian/22-10-23%20%E5%BA%B7%E5%A5%88%E7%AC%94%E8%AE%B0%E6%B3%95/" class="md-tabs__link">
+        4 Obsidian
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../5%20%E6%9D%82/Parallels%20Desktop%2018.0.1%2053056%20%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B%EF%BC%88pd18%E6%B0%B8%E4%B9%85%E6%8E%88%E6%9D%83%EF%BC%89/" class="md-tabs__link">
+        5 杂
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Linux/Ubuntu%20%E5%AE%89%E8%A3%85%20clashx/" class="md-tabs__link">
+        Linux
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Webclip/%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E6%A8%A1%E5%9E%8B%E3%80%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="md-tabs__link">
+        Webclip
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="SYNC" class="md-nav__button md-logo" aria-label="SYNC" data-md-component="logo">
+      
+  <img src="../../../FigureBed 🌄/source/nike.svg" alt="logo">
+
+    </a>
+    SYNC
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          1 求职准备
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="1 求职准备" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          1 求职准备
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          00 编程语言
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="00 编程语言" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          00 编程语言
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1_1" type="checkbox" id="__nav_2_1_1_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1_1">
+          1 Python 基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="1 Python 基础" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_1_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          1 Python 基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/1%20Python%20%E5%9F%BA%E7%A1%80/1.%20%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        1. 可变数据类型 不可变数据类型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/1%20Python%20%E5%9F%BA%E7%A1%80/2.%20%E8%B5%8B%E5%80%BC%E3%80%81%E6%B5%85%E6%8B%B7%E8%B4%9D%E3%80%81%E6%B7%B1%E6%8B%B7%E8%B4%9D/" class="md-nav__link">
+        2. 赋值、浅拷贝、深拷贝
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/1%20Python%20%E5%9F%BA%E7%A1%80/3.%20%E5%AE%B9%E5%99%A8%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81%E7%94%9F%E6%88%90%E5%99%A8/" class="md-nav__link">
+        3. 容器、迭代器、生成器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/1%20Python%20%E5%9F%BA%E7%A1%80/4.%20yield%20%E5%85%B3%E9%94%AE%E5%AD%97%E7%90%86%E8%A7%A3/" class="md-nav__link">
+        4. yield 关键字理解
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/1%20Python%20%E5%9F%BA%E7%A1%80/5.%20%E5%85%B3%E9%94%AE%E5%AD%97/" class="md-nav__link">
+        5. 关键字
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/1%20Python%20%E5%9F%BA%E7%A1%80/6.%20Python%E4%B8%AD%E7%9A%84%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="md-nav__link">
+        6. Python中的命名空间、生命周期与作用域
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1_2" type="checkbox" id="__nav_2_1_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1_2">
+          2 函数与模块
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2 函数与模块" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_1_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          2 函数与模块
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/2%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A8%A1%E5%9D%97/1.%20%E5%8F%82%E6%95%B0/" class="md-nav__link">
+        1. 参数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/2%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A8%A1%E5%9D%97/2.%20%E9%97%AD%E5%8C%85/" class="md-nav__link">
+        2. 闭包
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1_3" type="checkbox" id="__nav_2_1_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1_3">
+          3 面向对象
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="3 面向对象" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_1_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          3 面向对象
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/3%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/0.%20%E7%AE%80%E4%BB%8B%20Python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        0. 简介 Python面向对象编程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1_4" type="checkbox" id="__nav_2_1_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1_1_4">
+          4 Python 与操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="4 Python 与操作系统" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_1_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          4 Python 与操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/00%20%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Python/4%20Python%20%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/GIL%28%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81%29/" class="md-nav__link">
+        GIL(全局解释器锁)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          01 Leetcode
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="01 Leetcode" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          01 Leetcode
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1" type="checkbox" id="__nav_2_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1">
+          00 必会模板
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="00 必会模板" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          00 必会模板
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/00%20%E5%BF%85%E4%BC%9A%E6%A8%A1%E6%9D%BF/%E4%BA%8C%E5%88%86%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        二分基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/00%20%E5%BF%85%E4%BC%9A%E6%A8%A1%E6%9D%BF/%E5%A0%86%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        堆排序
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/00%20%E5%BF%85%E4%BC%9A%E6%A8%A1%E6%9D%BF/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        归并排序
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/00%20%E5%BF%85%E4%BC%9A%E6%A8%A1%E6%9D%BF/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        快速排序
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2">
+          01 Medium
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="01 Medium" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          01 Medium
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/101%20%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="md-nav__link">
+        101 对称二叉树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/102%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        102 二叉树的层序遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/103%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%94%AF%E9%BD%BF%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        103 二叉树的层序锯齿遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/105%20%E4%BB%8E%E5%89%8D%E5%BA%8F%E5%92%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="md-nav__link">
+        105 从前序和中序遍历构造二叉树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/11%20%E7%9B%9B%E6%B0%B4%E6%9C%80%E5%A4%9A%E7%9A%84%E5%AE%B9%E5%99%A8/" class="md-nav__link">
+        11 盛水最多的容器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/113%20%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%20II/" class="md-nav__link">
+        113 路径总和 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/114%20%20%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        114  二叉树展开为链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/1143%20%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        1143 最长公共子序列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/128%20%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        128 最长连续序列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/129%20%E6%B1%82%E6%A0%B9%E8%8A%82%E7%82%B9%E5%88%B0%E5%8F%B6%E8%8A%82%E7%82%B9%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/" class="md-nav__link">
+        129 求根节点到叶节点数字之和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/142%20%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%20II/" class="md-nav__link">
+        142 环形链表 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/143%20%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        143 重排链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/145%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        145 二叉树的后序遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/146%20LRU%20%E7%BC%93%E5%AD%98/" class="md-nav__link">
+        146 LRU 缓存
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/148%20%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        148 排序链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/15%20%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" class="md-nav__link">
+        15 三数之和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/165%20%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7/" class="md-nav__link">
+        165 比较版本号
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/189%20%E8%BD%AE%E8%BD%AC%E6%95%B0%E7%BB%84/" class="md-nav__link">
+        189 轮转数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/19%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9/" class="md-nav__link">
+        19 删除链表的倒数第 N 个结点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/198%20%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/" class="md-nav__link">
+        198 打家劫舍
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/199%20%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        199  二叉树的右视图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/2%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" class="md-nav__link">
+        2 两数相加
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/200%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/" class="md-nav__link">
+        200 岛屿数量
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/206%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        206 反转链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/215%20%E6%95%B0%E7%BB%84%E4%B8%AD%E7%AC%AC%20K%20%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/" class="md-nav__link">
+        215 数组中第 K 个最大元素
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/22%20%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/" class="md-nav__link">
+        22 括号生成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/230%20%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%AC%20k%20%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/" class="md-nav__link">
+        230 二叉搜索树中第 k 小的元素
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/236%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" class="md-nav__link">
+        236 二叉树的最近公共祖先
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/24%20%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" class="md-nav__link">
+        24 两两交换链表中的节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/240%20%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%20II/" class="md-nav__link">
+        240 搜索二维矩阵 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/3%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" class="md-nav__link">
+        3 无重复字符的最长子串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/300%20%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%20%EF%BC%88%E4%BA%8C%E5%88%86%E4%BC%98%E5%8C%96%EF%BC%89/" class="md-nav__link">
+        300 最长递增子序列 （二分优化）
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/322%20%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2/" class="md-nav__link">
+        322 零钱兑换
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/328%20%E5%A5%87%E5%81%B6%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        328 奇偶链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/33%20%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/" class="md-nav__link">
+        33 搜索旋转数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/34%20%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/" class="md-nav__link">
+        34 在排序数组中查找元素的第一个和最后一个位置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/39%20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/" class="md-nav__link">
+        39 组合总和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/40%20%E7%BB%84%E5%90%88%E6%80%BB%E6%95%B0II/" class="md-nav__link">
+        40 组合总数II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/450%20%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" class="md-nav__link">
+        450 删除二叉搜索树中的节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/46%20%E5%85%A8%E6%8E%92%E5%88%97/" class="md-nav__link">
+        46 全排列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/470%20%E7%94%A8Rand7%20%E5%AE%9E%E7%8E%B0%20rand10/" class="md-nav__link">
+        470 用Rand7 实现 rand10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/498%20%E5%AF%B9%E8%A7%92%E7%BA%BF%E9%81%8D%E5%8E%86/" class="md-nav__link">
+        498 对角线遍历
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/5%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" class="md-nav__link">
+        5 最长回文子串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/50%20Pow%28x%2C%20n%29/" class="md-nav__link">
+        50 Pow(x, n)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/54%20%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/" class="md-nav__link">
+        54 螺旋矩阵
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/56%20%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4/" class="md-nav__link">
+        56 合并区间
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/59%20%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5%20II/" class="md-nav__link">
+        59 螺旋矩阵 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/62%20%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/" class="md-nav__link">
+        62 不同路径
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/64%20%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/" class="md-nav__link">
+        64 最小路径和
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/662%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E5%AE%BD%E5%BA%A6/" class="md-nav__link">
+        662 二叉树的最大宽度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/74%20%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5/" class="md-nav__link">
+        74 搜索二维矩阵
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/78%20%E5%AD%90%E9%9B%86/" class="md-nav__link">
+        78 子集
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/8%20%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B4%E6%95%B0/" class="md-nav__link">
+        8  字符串转整数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/82%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20II/" class="md-nav__link">
+        82 删除链表中的重复元素 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/876%20%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/" class="md-nav__link">
+        876 链表的中间节点
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/92%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%20II/" class="md-nav__link">
+        92 反转链表 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/93%20%E5%A4%8D%E5%8E%9Fip%E5%9C%B0%E5%9D%80/" class="md-nav__link">
+        93 复原ip地址
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/98%20%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="md-nav__link">
+        98 验证二叉搜索树
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/Medium/" class="md-nav__link">
+        1. undo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/_review%20151%20%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D/" class="md-nav__link">
+         review 151 反转字符串里的单词
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/_review%2031%20%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97/" class="md-nav__link">
+         review 31 下一个排列
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/_review%2047%20%E5%85%A8%E6%8E%92%E5%88%97%20II/" class="md-nav__link">
+         review 47 全排列 II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/_review%2084%20%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/" class="md-nav__link">
+         review 84 柱状图中最大的矩形
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/_review%2093%20%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/" class="md-nav__link">
+         review 93 复原IP地址
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/_undo%2061%20%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+         undo 61 旋转链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/_undo%2079%20%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/" class="md-nav__link">
+         undo 79 单词搜索
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/01%20Medium/_undo/" class="md-nav__link">
+         undo
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_3" type="checkbox" id="__nav_2_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_3">
+          02 Hard
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="02 Hard" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          02 Hard
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/02%20Hard/23.%20%E5%90%88%E5%B9%B6%20K%20%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/" class="md-nav__link">
+        23. 合并 K 个排序链表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/02%20Hard/42.%20%E6%8E%A5%E9%9B%A8%E6%B0%B4/" class="md-nav__link">
+        739 每日温度
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_4" type="checkbox" id="__nav_2_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_4">
+          03 奇奇怪怪
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="03 奇奇怪怪" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          03 奇奇怪怪
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/03%20%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/50%E4%BA%BF%E6%9D%A1URL%20%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E5%86%85%E5%AD%984G%EF%BC%8C%E6%B1%82%E7%9B%B8%E5%90%8CURL/" class="md-nav__link">
+        50亿条URL 两个文件内存4G，求相同URL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/03%20%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/c%2B%2B%20%E4%B8%AD%20string%20%E5%92%8C%20int%20%E4%B9%8B%E9%97%B4%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/" class="md-nav__link">
+        C++ 中 string 和 int 之间相互转换
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/01%20Leetcode/%E5%BF%85%E5%88%B782%E9%A2%98/" class="md-nav__link">
+        必刷82 题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          观测云题目
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="观测云题目" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          观测云题目
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/%E8%A7%82%E6%B5%8B%E4%BA%91%E9%A2%98%E7%9B%AE/%E8%A7%82%E6%B5%8B%E4%BA%91%E7%AC%94%E8%AF%95/" class="md-nav__link">
+        观测云笔试
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1%20%E6%B1%82%E8%81%8C%E5%87%86%E5%A4%87/%E8%A7%82%E6%B5%8B%E4%BA%91%E9%A2%98%E7%9B%AE/%E8%A7%82%E6%B5%8B%E4%BA%91%E9%A2%98%E7%9B%AE/" class="md-nav__link">
+        观测云题目
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          2 学习中
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2 学习中" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2 学习中
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          GIT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GIT" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          GIT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GIT%20%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        GIT 规范
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Gitflow 分支详解
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Gitflow 分支详解
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-gitflow-介绍" class="md-nav__link">
+    1 gitflow 介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="1 gitflow 介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-中心式协同工作流" class="md-nav__link">
+    1.1 中心式协同工作流
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-功能分支协同工作流" class="md-nav__link">
+    1.2 功能分支协同工作流
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-gitflow-协同工作流" class="md-nav__link">
+    1.3 GitFlow 协同工作流
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-gitflow-协同工作流的缺点" class="md-nav__link">
+    1.4 Gitflow 协同工作流的缺点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-分支详细介绍" class="md-nav__link">
+    2 分支详细介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="2 分支详细介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-历史分支" class="md-nav__link">
+    2.1 历史分支
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-功能分支" class="md-nav__link">
+    2.2 功能分支
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-发布分支" class="md-nav__link">
+    2.3 发布分支
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-维护分支" class="md-nav__link">
+    2.4 维护分支
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-gitflow-的实现" class="md-nav__link">
+    3 GItFlow 的实现
+  </a>
+  
+    <nav class="md-nav" aria-label="3 GItFlow 的实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-使用命令来实现" class="md-nav__link">
+    3.1 使用命令来实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-使用-source-tree-来实现" class="md-nav__link">
+    3.2 使用 source tree 来实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-使用-gitlab-实现-git-flow" class="md-nav__link">
+    3.3 使用 gitlab 实现 git flow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_3" type="checkbox" id="__nav_3_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_3">
+          GIT 命令
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GIT 命令" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          GIT 命令
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GIT%20%E5%91%BD%E4%BB%A4/GIT%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        GIT 常用命令
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GIT%20%E5%91%BD%E4%BB%A4/Git%20branch%20%26%26%20Git%20checkout/" class="md-nav__link">
+        Git branch && Git checkout
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          K8S
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="K8S" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          K8S
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../K8S/K8S%E7%B3%BB%E5%88%97%E4%B8%80%EF%BC%9A%20%E6%A6%82%E5%BF%B5%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        I. K8S 概览
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          分布式项目
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="分布式项目" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          分布式项目
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_1" type="checkbox" id="__nav_3_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_1">
+          01 GO
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="01 GO" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          01 GO
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/1.%20Hello%20World%EF%BC%81/" class="md-nav__link">
+        1. Hello World！
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/10.%20GO%20%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        10. GO 接口
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/11.%20GO%20%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="md-nav__link">
+        11. GO 错误处理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/12.%20GO%20%E5%B9%B6%E5%8F%91/" class="md-nav__link">
+        12. GO 并发
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/13.%20GO%20channel%20%E9%80%9A%E9%81%93/" class="md-nav__link">
+        13. GO channel 通道
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/2.%20%E5%8F%98%E9%87%8F%E7%9A%84%203%20%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        2. 变量的 3 种方式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/3.%20GO%20%E5%B8%B8%E9%87%8F/" class="md-nav__link">
+        3. GO 常量
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/4.%20GO%20%E8%AF%AD%E8%A8%80%E8%BF%90%E7%AE%97%E7%AC%A6/" class="md-nav__link">
+        4. GO 语言运算符
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/5%20%E5%88%86%E9%92%9F%E9%80%9F%E9%80%9A%20GO%20%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        1. Hello World！
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/5.%20GO%20%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        5. GO 函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/5.%20GO%20%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5/" class="md-nav__link">
+        5. GO 条件语句
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/6.%20GO%20%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" class="md-nav__link">
+        6. GO 循环语句
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/6.%20GO%20%E6%95%B0%E7%BB%84/" class="md-nav__link">
+        6. GO 数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/7.%20GO%20%E5%88%87%E7%89%87%EF%BC%88Slice%EF%BC%89/" class="md-nav__link">
+        7. GO 切片（Slice）
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/8.%20GO%20Range%20%E8%AF%AD%E8%A8%80%E8%8C%83%E5%9B%B4/" class="md-nav__link">
+        8. GO Range 语言范围
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/01%20GO/9.%20GO%20Map%20%E9%9B%86%E5%90%88/" class="md-nav__link">
+        9. GO Map 集合
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_2" type="checkbox" id="__nav_3_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_2">
+          02 K8S
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="02 K8S" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          02 K8S
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/02%20K8S/1-1%20%E5%88%86%E9%92%9F%E9%80%9F%E9%80%9A%20Kubernets/" class="md-nav__link">
+        0. 其他
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/02%20K8S/2-3%20%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/" class="md-nav__link">
+        2 3 网络通讯方式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/02%20K8S/6%20Service/" class="md-nav__link">
+        6 Service
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/02%20K8S/K8S%E7%B3%BB%E5%88%97%E4%B8%80%EF%BC%9A%E6%A6%82%E5%BF%B5%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        I. K8S 概览
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_3" type="checkbox" id="__nav_3_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_3">
+          Raft & ETCD
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Raft & ETCD" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Raft & ETCD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/00%20Raft%20%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        0. 复制状态机的概念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/01%20%E9%97%AE%E9%A2%981%20%E9%A2%86%E5%AF%BC%E8%80%85%E9%80%89%E4%B8%BE/" class="md-nav__link">
+        01 问题1 领导者选举
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/02%20%E9%97%AE%E9%A2%982%20%E6%97%A5%E5%BF%97%E5%A4%8D%E5%88%B6/" class="md-nav__link">
+        02 问题2 日志复制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/03%20%E9%97%AE%E9%A2%983%20%E5%AE%89%E5%85%A8%E6%80%A7/" class="md-nav__link">
+        Raft 论文摘录： 5.4 安全性
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/04%20%E9%97%AE%E9%A2%984%20%E9%9B%86%E7%BE%A4%E6%88%90%E5%91%98%E5%8F%98%E5%8C%96/" class="md-nav__link">
+        04 问题4 集群成员变化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/99%20%E5%85%B6%E4%BB%96%20%E4%BA%86%E8%A7%A3%20RPC/" class="md-nav__link">
+        99 其他 了解 RPC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/Raft%20%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        Raft 视频笔记
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/Raft%20%26%20ETCD/Raft%20%E8%AE%BA%E6%96%87%E4%B8%AD%E6%96%87%E7%89%88%E6%9C%AC/" class="md-nav__link">
+        寻找一种易于理解的一致性算法（扩展版）
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_4" type="checkbox" id="__nav_3_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_4">
+          分布式范型简介与了解
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="分布式范型简介与了解" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          分布式范型简介与了解
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/%E5%88%86%E5%B8%83%E5%BC%8F%E8%8C%83%E5%9E%8B%E7%AE%80%E4%BB%8B%E4%B8%8E%E4%BA%86%E8%A7%A3/Hadoop%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B/" class="md-nav__link">
+        Hadoop大数据处理框架简介
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/%E5%88%86%E5%B8%83%E5%BC%8F%E8%8C%83%E5%9E%8B%E7%AE%80%E4%BB%8B%E4%B8%8E%E4%BA%86%E8%A7%A3/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%90%88%E9%9B%86/" class="md-nav__link">
+        大数据合集
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          3 阅读
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="3 阅读" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3 阅读
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../3%20%E9%98%85%E8%AF%BB/RSA%20%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E5%88%B0%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        RSA 实际应用到基础原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          运维工程师有前途吗
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="运维工程师有前途吗" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          运维工程师有前途吗
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../3%20%E9%98%85%E8%AF%BB/%E8%BF%90%E7%BB%B4%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%9C%89%E5%89%8D%E9%80%94%E5%90%97/%E8%BF%90%E7%BB%B4%2C%E6%94%BE%E8%BF%87%E7%9B%91%E6%8E%A7-%E4%B9%9F%E6%94%BE%E8%BF%87%E8%87%AA%E5%B7%B1%E5%90%A7/" class="md-nav__link">
+        运维,放过监控 也放过自己吧
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../3%20%E9%98%85%E8%AF%BB/%E8%BF%90%E7%BB%B4%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%9C%89%E5%89%8D%E9%80%94%E5%90%97/%E8%BF%90%E7%BB%B4%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%9C%89%E5%89%8D%E9%80%94%E4%B9%88%EF%BC%9F/" class="md-nav__link">
+        运维工程师有前途么？
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          4 Obsidian
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="4 Obsidian" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          4 Obsidian
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../4%20Obsidian/22-10-23%20%E5%BA%B7%E5%A5%88%E7%AC%94%E8%AE%B0%E6%B3%95/" class="md-nav__link">
+        22 10 23 康奈笔记法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../4%20Obsidian/mkdocs/" class="md-nav__link">
+        Mkdocs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../4%20Obsidian/%E7%AE%80%E6%82%A6/" class="md-nav__link">
+        简悦
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          5 杂
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="5 杂" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          5 杂
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../5%20%E6%9D%82/Parallels%20Desktop%2018.0.1%2053056%20%E7%A0%B4%E8%A7%A3%E6%95%99%E7%A8%8B%EF%BC%88pd18%E6%B0%B8%E4%B9%85%E6%8E%88%E6%9D%83%EF%BC%89/" class="md-nav__link">
+        Parallels Desktop 18.0.1 53056 破解教程（pd18永久授权）
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Linux/Ubuntu%20%E5%AE%89%E8%A3%85%20clashx/" class="md-nav__link">
+        Ubuntu 安装 clashx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Linux/Ubuntu%20%E5%AE%89%E8%A3%85%20ssh/" class="md-nav__link">
+        Ubuntu 安装 ssh
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Webclip
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Webclip" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Webclip
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Webclip/%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E6%A8%A1%E5%9E%8B%E3%80%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+        时序预测的三种方式：统计学模型、机器学习、循环神经网络
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-gitflow-介绍" class="md-nav__link">
+    1 gitflow 介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="1 gitflow 介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-中心式协同工作流" class="md-nav__link">
+    1.1 中心式协同工作流
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-功能分支协同工作流" class="md-nav__link">
+    1.2 功能分支协同工作流
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-gitflow-协同工作流" class="md-nav__link">
+    1.3 GitFlow 协同工作流
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-gitflow-协同工作流的缺点" class="md-nav__link">
+    1.4 Gitflow 协同工作流的缺点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-分支详细介绍" class="md-nav__link">
+    2 分支详细介绍
+  </a>
+  
+    <nav class="md-nav" aria-label="2 分支详细介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-历史分支" class="md-nav__link">
+    2.1 历史分支
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-功能分支" class="md-nav__link">
+    2.2 功能分支
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-发布分支" class="md-nav__link">
+    2.3 发布分支
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-维护分支" class="md-nav__link">
+    2.4 维护分支
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-gitflow-的实现" class="md-nav__link">
+    3 GItFlow 的实现
+  </a>
+  
+    <nav class="md-nav" aria-label="3 GItFlow 的实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-使用命令来实现" class="md-nav__link">
+    3.1 使用命令来实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-使用-source-tree-来实现" class="md-nav__link">
+    3.2 使用 source tree 来实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-使用-gitlab-实现-git-flow" class="md-nav__link">
+    3.3 使用 gitlab 实现 git flow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<blockquote>
+<p>created: 2022-10-05T12:18:00<br />
+tags: [gitflow]<br />
+source: <a href="https://blog.csdn.net/fd2025/article/details/124336480">原文地址</a><br />
+author:</p>
+</blockquote>
+<hr />
+<h1 id="gitflow-分支详解">Gitflow 分支详解<a class="headerlink" href="#gitflow-分支详解" title="Permanent link">&para;</a></h1>
+<h2 id="1-gitflow-介绍">1 gitflow 介绍<a class="headerlink" href="#1-gitflow-介绍" title="Permanent link">&para;</a></h2>
+<p><img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/144bafc5941e4cf1bdb67b9d19e96f51.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>比如我很喜欢的 <code>git stash</code> 命令，可以把当前没有完成的事先暂存一下，然后去忙别的事。<code>git cherry-pick</code> 命令可以让你有选择地合并提交。<code>git add -p</code> 可以让你挑选改动提交，<code>git grep $regexp $(git rev-list --all)</code> 可以用来在所有的提交中找代码。因为都是本地操作，所以你会觉得速度飞快。</p>
+<p>除此之外，由 Git 衍生出来的 GitHub/GitLab 可以帮你很好地管理编程工作，比如 wiki、fork、pull、request、issue……集成了与编程相关的工作，让人觉得这不是一个冷冰冰的工具，而真正和我们的日常工作发生了很好的交互。</p>
+<p>GitHub/GitLab 这样工具的出现，让我们的工作可以呈现在一个工作平台上，并以此来规范整个团队的工作，这才正是 Git 这个版本管理工具成功的原因。</p>
+<h3 id="11-中心式协同工作流">1.1 中心式协同工作流<a class="headerlink" href="#11-中心式协同工作流" title="Permanent link">&para;</a></h3>
+<p>首先，我们先说明一下，Git 是可以像 SVN 这样的中心工作流一样工作的。我相信很多程序员都是在采用这样的工作方式。</p>
+<p>这个过程一般是下面这个样子的。<br />
+1. 从服务器上做 <code>git pull origin master</code> 把代码同步下来。<br />
+2. 改完后，<code>git commit</code> 到本地仓库中。<br />
+3. 然后 <code>git push origin master</code> 到远程仓库中，这样其他同学就可以得到你的代码了。</p>
+<p>如果在第 3 步发现 push 失败，因为别人已经提交了，那么你需要先把服务器上的代码给 pull 下来，为了避免有 merge 动作，你可以使用 <code>git pull --rebase</code>。<mark style="background: #ABF7F7A6;">这样就可以把服务器上的提交直接合并到你的代码中</mark>，对此，Git 的操作是这样的。<br />
+1. 先把你本地提交的代码放到一边。<br />
+2. 然后把服务器上的改动下载下来。<br />
+3. 然后在本地把你之前的改动再重新一个一个地做 commit，直到全部成功。</p>
+<p>如下图所示。Git 会把 Origin/Master 的远程分支下载下来（紫色的），然后把本地的 Master 分支上的改动一个一个地提交上去（蓝色的）。<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/28847496cb6d4c76a127ec18ec0aa414.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>如果有冲突，那么你要先解决冲突，然后做 <code>git rebase --continue</code> 。如下图所示，git 在做 pull --rebase 时，会一个一个地应用（apply）本地提交的代码，如果有冲突就会停下来，等你解决冲突。<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/037c6326070c45fab72a460c317529e8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<h3 id="12-功能分支协同工作流">1.2 功能分支协同工作流<a class="headerlink" href="#12-功能分支协同工作流" title="Permanent link">&para;</a></h3>
+<p>上面的那种方式有一个问题，就是大家都在一个主干上开发程序，对于小团队或是小项目你可以这么干，但是对比较大的项目或是人比较多的团队，这么干就会有很多问题。</p>
+<p><strong>最大的问题就是代码可能干扰太严重。</strong> 尤其是，我们想安安静静地开发一个功能时，我们想把各个功能的代码变动隔离开来，同时各个功能又会有多个开发人员在开发。</p>
+<p>这时，我们不想让各个功能的开发人员都在 Master 分支上共享他们的代码。我们想要的协同方式是这样的：<mark style="background: #ABF7F7A6;">同时开发一个功能的开发人员可以分享各自的代码，但是不会把代码分享给开发其他功能的开发人员，直到整个功能开发完毕后，才会分享给其他的开发人员（也就是进入主干分支）。</mark></p>
+<p>因此，我们引入“功能分支”。这个协同工作流的开发过程如下。<br />
+1. 首先使用 <code>git checkout -b new-feature</code> 创建 “new-feature”分支。<br />
+2. 然后共同开发这个功能的程序员就在这个分支上工作，进行 add、commit 等操作。<br />
+3. 然后通过 <code>git push -u origin new-feature</code> 把分支代码 push 到服务器上。<br />
+4. 其他程序员可以通过 <code>git pull --rebase</code> 来拿到最新的这个分支的代码。<br />
+5. 最后通过 Pull Request 的方式做完 Code Review 后合并到 Master 分支上。</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/2c2d709240d0424293eb01efa5ab63d6.png" /></p>
+<p>就像上面这个图显示的一样，紫色的分支就是功能分支，合并后就会像上面这个样子。</p>
+<h3 id="13-gitflow-协同工作流">1.3 GitFlow 协同工作流<a class="headerlink" href="#13-gitflow-协同工作流" title="Permanent link">&para;</a></h3>
+<p>在真实的生产过程中，前面的协同工作流还是不能满足工作的要求。这主要因为我们的生产过程是比较复杂的，软件生产中会有各式各样的问题，并要面对不同的环境。我们要在不停地开发新代码的同时，维护线上的代码，于是，就有了下面这些需求。<br />
+1. <strong>希望有一个分支是非常干净的，上面是可以发布的代码，上面的改动永远都是可以发布到生产环境中的。</strong> 这个分支上不能有中间开发过程中不可以上生产线的代码提交。<br />
+2. 希望当代码达到可以上线的状态时，也就是在 alpha/beta release 时，<strong>在测试和交付的过程中，依然可以开发下一个版本的代码。</strong><br />
+3. 最后，对于已经发布的代码，也会有一些 <strong>Bug-fix</strong> 的改动，不会将正在开发的代码提交到生产线上去。</p>
+<p>为了解决这些问题，GitFlow 协同工作流就出来了。<br />
+这个协同工作流的核心思想如下图所示。</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/a836de2bf65841b78fbfbbd755b0064a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>整个代码库中一共有**五种分支** 。<br />
+- <mark style="background: #ABF7F7A6;">Master 分支</mark>。也就是主干分支，用作发布环境，上面的每一次提交都是可以发布的。<br />
+- <mark style="background: #ABF7F7A6;">Feature 分支</mark>。也就是功能分支，用于开发功能，其对应的是开发环境。<br />
+- <mark style="background: #ABF7F7A6;">Developer 分支</mark>。是开发分支，一旦功能开发完成，就向 Developer 分支合并，合并完成后，删除功能分支。这个分支对应的是集成测试环境。<br />
+- Release 分支。当 Developer 分支测试达到可以发布状态时，开出一个 Release 分支来，然后做发布前的准备工作。这个分支对应的是预发环境。</p>
+<blockquote>
+<p>之所以需要这个 Release 分支，是我们的开发可以继续向前，不会因为要发布而被 block 住而不能提交。一旦 Release 分支上的代码达到可以上线的状态，那么需要把 Release 分支向 Master 分支和 Developer 分支同时合并，以保证代码的一致性。然后再把 Release 分支删除掉。</p>
+</blockquote>
+<ul>
+<li><mark style="background: #ABF7F7A6;">Hotfix 分支。</mark>是用于处理生产线上代码的 Bug-fix，每个线上代码的 Bug-fix 都需要开一个 Hotfix 分支，完成后，向 Developer 分支和 Master 分支上合并。<blockquote>
+<p>合并完成后，删除 Hotfix 分支。</p>
+</blockquote>
+</li>
+</ul>
+<p>这就是整个 GitFlow 协同工作流的工作过程。我们可以看到：<br />
+1. <strong>我们需要长期维护 Master 和 Developer 两个分支。</strong><br />
+2. 这其中的方式还是有一定复杂度的，尤其是 Release 和 Hotfix 分支需要同时向两个分支作合并。所以，如果没有一个好的工具来支撑的话，这会因为我们可能会忘了做一些操作而导致代码不一致。<br />
+3. GitFlow 协同虽然工作流比较重。但是它几乎可以应对所有公司的各种开发流程，包括瀑布模型，或是快速迭代模型。</p>
+<h3 id="14-gitflow-协同工作流的缺点">1.4 Gitflow 协同工作流的缺点<a class="headerlink" href="#14-gitflow-协同工作流的缺点" title="Permanent link">&para;</a></h3>
+<p>其中有个问题就是因为分支太多，所以会出现 git log 混乱的局面。具体来说，主要是 <code>git- flow</code> 使用 <code>gitmerge --no-ff</code> 来合并分支，在 git-flow 这样多个分支的环境下会让你的分支管理的 log 变得很难看。如下所示，左边是使用–no-ff 参数在多个分支下的问题。</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/19ad31f7ba794d27a93e0cf13be78d58.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>所谓 <code>--no-ff</code> 参数的意思是 <code>——no fast forward</code> 的意思。也就是说，合并的方法不要把这个分支以 <strong>前置合并</strong> 的方式提交，而是留下一个 merge 的提交。这是把双刃剑，我们希望我们的 <code>--no-ff</code> 能像右边那样，而不是像左边那样。</p>
+<p>对此的建议是：只有 feature 合并到 developer 分支时，使用–no-ff 参数，其他的合并都不使用 <code>--no-ff</code> 参数来做合并。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>    --no-ff指的是强行关闭fast-forward方式。
+    fast-forward方式就是当条件允许的时候，git直接把HEAD指针指向合并分支的头，完成合并。属于“快进方式”，
+    不这种情况如果删除分支，则会丢失分支信息。因为在这个过程中没有创建commit
+
+    git merge --squash 是用来把一些不必要commit进行压缩，比如说，你的feature在开发的时候写的commit很乱，
+    那么我们合并的时候不希望把这些历史commit带过来，于是使用--squash进行合并，此时文件已经同合并后一样了,
+    但不移动HEAD，不提交。需要进行一次额外的commit来“总结”一下，然后完成最终的合并。
+
+    总结：
+    --no-ff：不使用fast-forward方式合并，保留分支的commit历史
+    --squash：使用squash方式合并，把多次分支commit历史压缩为一次
+</code></pre></div></td></tr></table></div>
+<p>另外，还有一个问题就是，在开发得足够快的时候，你会觉得同时维护 Master 和 Developer 两个分支是一件很无聊的事，因为这两个分支在大多数情况下都是一样的。包括 Release 分支，你会觉得创建的这些分支太无聊。</p>
+<p>而你的整个开发过程也会因为这么复杂的管理变得非常复杂。尤其当你想回滚某些人的提交时，你就会发现这事似乎有点儿不好干了。而且在工作过程中，你会来来回回地切换工作的分支，有时候一不小心没有切换，就提交到了不正确的分支上，你还要回滚和重新提交，等等。</p>
+<h2 id="2-分支详细介绍">2 分支详细介绍<a class="headerlink" href="#2-分支详细介绍" title="Permanent link">&para;</a></h2>
+<ul>
+<li>首先有一个 master 版本，如果新开发一个功能，则会创建一个 develop 分支</li>
+</ul>
+<p><img alt="" src="https://img-blog.csdnimg.cn/ff8b012433ea46ff9cf563c766f48557.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<ul>
+<li>我们现在想开发一个<code>新功能</code>，glodstyle , 改变界面的皮肤，分别创建对应的分支</li>
+</ul>
+<p><img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/d91c475947a4473f9e139a9dae2ea9bb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<ul>
+<li>
+<p>再开发一个<code>小游戏功能</code>，分别创建对应的分支<br />
+<img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/a2592ed4453342058e1dee7771e8791b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+</li>
+<li>
+<p>如果线上跑的程序出现 bug 了，创建一个<code>热修复分支</code>。</p>
+</li>
+</ul>
+<p><img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/8367d84d2f4b44d0b46563ebecb6bc7e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<ul>
+<li>修复 bug 以后，尽快合并到 master 中。同时修复的版本，也要合并到 develop 分支上</li>
+</ul>
+<p><img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/7a8dd59c93014334a35d1c809f63d880.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<ul>
+<li>
+<p>两个功能分支继续往前推进，feature_goldstyle 先开发完成，合并到 develop 分支上<br />
+<img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/904520e5081e485b80f134ffbfb643c4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+</li>
+<li>
+<p>feature_goldstyle 完成后，合并到 develop 分支，然后基于 develop 分支 创建预发布分支(release) ,在设个分支上进行上线前的测试。<br />
+<img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/6e3aabfc3881417987407e3a591f8774.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+</li>
+<li>
+<p>如果 release 分支出现 bug,则直接在 release 分支上进行发布，修复以后，合并到 master 分支上。开发分支也需要这个功能，也要合并到开发分支上。<br />
+<img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/2561eb5135fe414d85000c77005a4720.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+</li>
+<li>
+<p>然后 小游戏分支也开发完成了，合并到 develop 分支上，然后创建 release 分支，如果测试没问题，则合并到 master 分支上。<br />
+<img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/e9ac0f581e8f4e55855f4c4b90b6193c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+</li>
+</ul>
+<p>hotfix 分支 修复完 bug 后，直接就删除了。也可以不需要 release 分支，直接在 develop 分支上进行测试。</p>
+<p>分支类型<br />
+- master 主分之(生产环境分支)，<strong>确保任何时刻该分之上的代码都是可发布的稳定的，不允许直接提交代码到该分支。</strong><u>为实现更严格的控制可以添加权限，只有主程序员才可操作该分支，普通开发员无权限。</u><br />
+- develop 开发分支，该分支上的代码是开发完成且经过测试(自测)的代码。在多人协作开发的场景下不建议直接在该分支上提交代码应该配合功能分支、预发布分支和补丁分支来进行代码的合并<br />
+- feature/FEATURE_NAME 功能分支<br />
+- release/vSEMATIC_VERSION 预发布分支<br />
+- hotfix/HOTFIX_NAME 补丁分支<br />
+- vMAJOR.MINOR.PATCH 版本标签</p>
+<p>分支说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">分支类型</th>
+<th align="center">定义</th>
+<th align="center">作用</th>
+<th align="center">合并关系</th>
+<th align="center">建立时机</th>
+<th align="center">初始代码来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">master</td>
+<td align="center">主分支</td>
+<td align="center">记录每一个正式发布版本，TAG 所在分支</td>
+<td align="center">允许来自 release 和 hotfix 分支的合并</td>
+<td align="center">仓库初始化</td>
+<td align="center">仓库初始化</td>
+</tr>
+<tr>
+<td align="center">hotfix</td>
+<td align="center">补丁分支</td>
+<td align="center">修复已发布版本的 bug</td>
+<td align="center">不允许来自任何分支的合并</td>
+<td align="center">已发布版本出现 BUG 时</td>
+<td align="center">master(或 master 上的 TAG)</td>
+</tr>
+<tr>
+<td align="center">release</td>
+<td align="center">预发布分支</td>
+<td align="center">表示预发布在测试 QA 环境的分支，待测试人员进行测试</td>
+<td align="center">不允许来自任何分支的合并</td>
+<td align="center">develop 上代码满足发布要求</td>
+<td align="center">推荐使用 develop 上最新的 commit</td>
+</tr>
+<tr>
+<td align="center">develop</td>
+<td align="center">开发分支</td>
+<td align="center">保持最新的经过自测的代码</td>
+<td align="center">允许来自 feature、release 和 hotfix 分支的合并</td>
+<td align="center">master 创建完成后</td>
+<td align="center">master</td>
+</tr>
+<tr>
+<td align="center">feature</td>
+<td align="center">功能分支</td>
+<td align="center">开发独立的功能需求</td>
+<td align="center">不允许来自任何分支的合并</td>
+<td align="center">有独立的新功能需求时</td>
+<td align="center">推荐使用 develop 上最新的 commit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-历史分支">2.1 历史分支<a class="headerlink" href="#21-历史分支" title="Permanent link">&para;</a></h3>
+<p>相对使用仅有的一个 master 分支，<strong>Gitflow 工作流使用 2 个分支来记录项目的历史。</strong> <mark style="background: #ABF7F7A6;">master 分支</mark>存储了正式发布的历史，而 <mark style="background: #ABF7F7A6;">develop 分支</mark>作为功能的集成分支。 这样也方便 master 分支上的所有提交分配一个<mark style="background: #ABF7F7A6;">版本号</mark>。</p>
+<p><img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/7b6713e6950d42d7827503fe1e8eb237.png" /></p>
+<h3 id="22-功能分支">2.2 功能分支<a class="headerlink" href="#22-功能分支" title="Permanent link">&para;</a></h3>
+<p><strong>每个新功能位于一个自己的分支，这样可以 push 到中央仓库以备份和协作。</strong> <mark style="background: #ABF7F7A6;">但功能分支不是从 master 分支上拉出新分支，而是使用 develop 分支作为父分支。当新功能完成时，合并回 develop 分支。 </mark>新功能提交应该从不直接与 master 分支交互。<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/d439258cb248431d9857d21001fa1c3e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>注意，从各种含义和目的上来看，功能分支加上 develop 分支就是功能分支工作流的用法。但 Gitflow 工作流没有在这里止步。</p>
+<h3 id="23-发布分支">2.3 发布分支<a class="headerlink" href="#23-发布分支" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://img-blog.csdnimg.cn/c8e27089b097406eb3ca7fb34608bc95.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>一旦 develop 分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，<mark style="background: #ABF7F7A6;">就从 develop 分支上 fork 一个发布分支（Release）。 新建的分支用于开始发布循环，</mark><strong>所以从这个时间点开始之后新的功能不能再加到这个分支（Release）上—— 这个分支（Release）只应该做 Bug 修复、文档生成和其它面向发布任务。</strong> <mark style="background: #ABF7F7A6;">一旦对外发布的工作都完成了，发布分支（Release）合并到 master 分支并分配一个版本号打好 Tag。 </mark></p>
+<p><strong>另外，这些从新建发布分支以来的做的修改要合并回 develop 分支。</strong> (最后再删除 Release 分支)使用一个用于发布准备的专门分支，使得一个团队可以在完善当前的发布版本的同时，另一个团队可以继续开发下个版本的功能。 这也打造定义良好的开发阶段（比如，可以很轻松地说，『这周我们要做准备发布版本 4.0』，并且在仓库的目录结构中可以实际看到）。</p>
+<p><strong>常用的分支介绍</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>用于新建发布分支的分支: develop
+用于合并的分支: master
+分支命名: release-* 或 release/*
+</code></pre></div></td></tr></table></div>
+<h3 id="24-维护分支">2.4 维护分支<a class="headerlink" href="#24-维护分支" title="Permanent link">&para;</a></h3>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/c880c306128d49e5a067a2fad9d66c0d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p><strong>维护分支或说是热修复（hotfix）分支用于生成快速给产品发布版本（production releases）打补丁，这是唯一可以直接从 master 分支 fork 出来的分支。</strong> 修复完成，修改应该马上合并回 master 分支和 develop 分支（当前的发布分支），master 分支应该用新的版本号打好 Tag。为 Bug 修复使用专门分支，让团队可以处理掉问题而不用打断其它工作或是等待下一个发布循环。 你可以把维护分支想成是一个直接在 master 分支上处理的临时发布。</p>
+<h2 id="3-gitflow-的实现">3 GItFlow 的实现<a class="headerlink" href="#3-gitflow-的实现" title="Permanent link">&para;</a></h2>
+<h3 id="31-使用命令来实现">3.1 使用命令来实现<a class="headerlink" href="#31-使用命令来实现" title="Permanent link">&para;</a></h3>
+<ol>
+<li>创建一个仓库<br />
+<img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/666e49084b024a6d9a04544445dd6c38.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></li>
+<li>
+<p>然后 clone 项目</p>
+</li>
+<li>
+<p>为 master 分支配套一个 develop 分支，简单来说，可以在本地创建一个空的 develop 分支，push 到服务器上</p>
+</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>git checkout -b develop  #基于当前分支
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>初始化项目工程，创建 springBoot 项目</li>
+<li>提交分支到服务器上</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>git push --set-upstream origin develop
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p>初始化框架，加上 springBoot 框架及样例</p>
+</li>
+<li>
+<p>以后这个分支将会包含了项目的全部历史，而 master 分支将包含了部分历史。其他开发者这时应该克隆中央仓库，建好 develop 分支的跟踪分支:</p>
+</li>
+<li>
+<p>创建功能分支<br />
+<strong>程序员 A</strong></p>
+</li>
+</ul>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>git clone http://192.168.53.197:3000/root/gitflow.git
+git checkout develop # 切换到develop分支
+git checkout -b feature/FEATURE-01 # 基于develop 分支创建功能分支
+git push -u origin feature/FEATURE-01
+</code></pre></div></td></tr></table></div><br />
+- 做功能修改，添加功能<br />
+- 提交<br />
+- 程序员 A 完成了开发的功能。如果团队 使用 Pull requests ,这时候发起一个用于合并到 develop 分支。</p>
+<p>否则可以直接合并到他本地的 develop 分支后 push 到中央仓库</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code># 拉取远程的develop分支，并且当前分支（本地分支some-feature）合并上远程分支develop
+#第一条命令在合并功能前确保develop分支是最新的。注意，功能决不应该直接合并到master分支。 冲突解决方法和集中式工作流一样。
+git pull origin develop
+git checkout develop
+git merge --no-ff feature/FEATURE-01 #合并分支到develop分支上
+git push
+# 删除本地分支
+git branch -d feature/FEATURE-01
+# 如果在服务器上有这个分支，则需要执行以下命令
+git push origin --delete feature/FEATURE-01
+</code></pre></div></td></tr></table></div>
+<p><strong>创建功能分支程序员 B</strong>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>git clone http://192.168.50.197:3000/root/gitflow.git
+git checkout develop # 切换到develop分支
+git checkout -b feature/FEATURE-02 # 
+</code></pre></div></td></tr></table></div>
+<p>功能开发完成后，需要合并分支</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code># 拉取远程的develop分支，并且当前分支（本地分支some-feature）合并上远程分支develop
+#第一条命令在合并功能前确保develop分支是最新的。注意，功能决不应该直接合并到master分支。 冲突解决方法和集中式工作流一样。
+git pull origin develop
+git checkout develop
+git merge --no-ff feature/FEATURE-01 #合并分支到develop分支上
+git push
+# 删除本地分支
+git branch -d feature/FEATURE-02
+</code></pre></div></td></tr></table></div>
+<p>6.在 develop 分支上创建 release 分支</p>
+<p>这时候开始第一个项目的正式发布。像功能开发，用一个分支来做发布准备。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>git checkout develop
+git checkout -b release/v0.9.0
+</code></pre></div></td></tr></table></div>
+<p>这个分支是清理发布、执行所有测试、更新文档和其它为下个发布做准备操作的底仓</p>
+<p>测试人员进行测试</p>
+<p>开发人员进行修复测试问题</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>git add .
+git commit -m &quot;fix:fix some ... &quot;
+</code></pre></div></td></tr></table></div>
+<p>如果测试没有问题，则合并到 master 分支上</p>
+<p>一旦准备好了对外发布，就需要合并修改到 master 分支上和 develop 分支上。删除发布分支。</p>
+<p>合并回 develop 分支很重要，因为在发布分支中已经提交的更新需要在后面的新功能中也要是可</p>
+<p>用的。另外，如果团队要求 Code Review ，这时一个发起 Pull Request 的李想时机。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>git checkout master
+git merge --no-ff release/v0.9.0
+git push 
+
+# 把release 版本也合并到develop分支上
+git checkout develop
+git merge --no-ff release/v0.9.0
+git push
+
+git branch -d release-0.1.0
+# If you pushed branch to origin:
+git push origin --delete release-0.1.0   
+</code></pre></div></td></tr></table></div>
+<p>发布分支是作为功能开发（develop 分支）和对外发布（master 分支）间的缓冲。只要有合并到 master 分支，就应该打好 Tag 以方便跟踪。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>git tag -a v0.9.0 -m &quot;Initial public release&quot; master
+git push --tags
+</code></pre></div></td></tr></table></div>
+<p>Git 有提供各种钩子(hook) , 即仓库有事件发生时触发执行的脚本。可以配置一个钩子，在你 push 中央仓库的 master 分支上时，自动构建好对外发布。</p>
+<ol>
+<li>如果 master 在生产环境上出现 bug</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>git checkout master
+git checkout -b hotfix/v0.9.0
+</code></pre></div></td></tr></table></div>
+<p>进行修复 bug</p>
+<ol>
+<li>把修复的版本合并到 master 分支上</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>git checkout master
+git merge --no-ff hotfix/v0.9.0
+git tag v0.9.1
+git push
+git push origin v0.9.1
+
+# 把补丁分支 合并到develop 分支上
+git checkout develop
+git merge --no-ff hotfix/v0.9.0
+git push
+git branch -d hotfix/v0.9.0
+</code></pre></div></td></tr></table></div>
+<h3 id="32-使用-source-tree-来实现">3.2 使用 source tree 来实现<a class="headerlink" href="#32-使用-source-tree-来实现" title="Permanent link">&para;</a></h3>
+<p>1.首先在 gitlab 上创建一个项目<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/267ac8c5b2e8463baa54758dd565d94c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>2.在 source tree 创建分支</p>
+<p>在本地把服务器上的项目拉下来</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code># 用命令行创建develop分支
+git checkout -n develop
+git push --set-upstream origin develop
+</code></pre></div></td></tr></table></div>
+<p>然后用 source tree 打开<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/7064e4e7cdfd425db6b5b350c72809ba.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>创建 feature-01 分支<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/238d27888d854663800c0c8dfabd4f5c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>对 feature-01 分支 进行 修改上传</p>
+<p>可以在此页面进行提交，点击 + 号</p>
+<p>功能开发完成后，该怎么办呢？</p>
+<p>再次点击 git 工作流：<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/7b0fa13e5b8a4dc997bab53341bd08c2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>点击完成功能</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/63e7398ac8b74262844322e5aca74b42.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_18,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>一般情况下，不会选择在开发分支上进行变基</p>
+<p>点击确定</p>
+<p>再次点击 GIt 工作流，创建预发布版本，一般在 develop 分支上。<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/8995bcdd2caf459b83dfb57c5443ad11.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /><br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/e360aecaba8e4b5c859cb0fab4c3ba29.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_19,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>点击确定</p>
+<p>如果预发布版本测试没有问题，则再次点击 Git 工作流，完成发布版本<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/387a67e4ae734985bc70ca8ec85a5b45.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /><br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/af2f5dd71eb9477ba406df37ff52df33.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>点击确定：</p>
+<p>加入我们在生产环境上出现 bug,补丁分支是基于 master 的</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/0e2a039b862d4fabb01db09f2fb940dc.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /><br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/02f15c315b4b473d96bda403e247f412.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_18,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>修复完成后，再次点击 GIt 工作流</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/76bf3c4d2ba3457a879bfa7deccc89a7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /><br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/080002fe765f473fb87a62ab84fd66fd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_16,color_FFFFFF,t_70,g_se,x_16" /></p>
+<h3 id="33-使用-gitlab-实现-git-flow">3.3 使用 gitlab 实现 git flow<a class="headerlink" href="#33-使用-gitlab-实现-git-flow" title="Permanent link">&para;</a></h3>
+<p><img alt="在这里插入图片描述|400" src="https://img-blog.csdnimg.cn/1066fd58e9dd4e298f63626e23d95675.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>可以安装 git flow 插件</p>
+<ol>
+<li>
+<p>首先在 gitlab 上创建仓库</p>
+<p>把仓库代码拉到本地</p>
+<p>创建 develop 分支</p>
+</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code># clone 项目
+git clone http://192.168.50.197:82/rorm_group/recas.git
+# 创建develop 分支 并切换分支
+git checkout -b develop
+# 添加和修改文件
+
+# 把develop 分支提交到服务器
+git push --set-upstream origin develop
+</code></pre></div></td></tr></table></div>
+<p>设置 master 和 develop 为保护分支，且只有 master 角色才能 merge 和 push</p>
+<p>2.成员进行 clone git clone</p>
+<p>添加成员</p>
+<p>3.项目组长分配里程碑与议题<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/8e5913b16e19453f84ac6f32a6009af5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /><br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/9328d2ffdfdc49869732b62025a66dbb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>创建完成如下:</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/51858fbc2d294f219dbc417db72d24ca.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>下面是创建 issue<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/8f7e778bf190443cb5a51c35398458ae.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/8e87d537044f46c0b0d8bba9130d5c54.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>添加完成后，就可以在里程碑中看到添加的问题</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/85ed19a7d3fd4d81b5cc9bd6b4ac0971.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>可以指派人解决</p>
+<p>4.项目成员根据自己被分配的任务建立对应的分支</p>
+<ul>
+<li>先在项目中建立分支，再拉取开发</li>
+<li>先在本地建立分支，再提交</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code># 拉取代码
+# clone 项目
+git clone http://192.168.53.197:82/rorm_group/xx.git
+# 创建develop 分支 并切换分支
+git checkout -b question01
+# 添加和修改文件
+
+# 把develop 分支提交到服务器
+git push --set-upstream origin question1
+</code></pre></div></td></tr></table></div>
+<p>然后编辑文件</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>git add .
+git commit -m &quot;ddd&quot;
+git push origin feature/question01
+</code></pre></div></td></tr></table></div>
+<p>开发人员完成开发后，在 gitlab 上 创建 MergeRequest<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/84b710587cb14da081d6384b02d03acf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<ul>
+<li>
+<p><code>fixes #xxx</code></p>
+</li>
+<li>
+<p><code>fixed #xxx</code> ： 关闭某一 issue</p>
+</li>
+<li>
+<p><code>fix #xxx</code></p>
+</li>
+<li>
+<p><code>closes #xxx</code></p>
+</li>
+<li>
+<p><code>close #xxx</code></p>
+</li>
+<li>
+<p><code>closed #xxx</code> ： 关闭某一 issue</p>
+</li>
+</ul>
+<p><img alt="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-5dPbpWrR-1650586937687)(D: \study\项目\GIt 分支管理\分支策略.assets\image-20211021095022645.png)]" src="https://img-blog.csdnimg.cn/04eb6930006045238ebd262585093e04.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>点击 修改分支</p>
+<p><img alt="" src="https://img-blog.csdnimg.cn/03e708424f1a471c8ed22f5cbcb0f1d5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>点击提交合并请求。</p>
+<p>用管理员用户登录，右上角有合并请求<br />
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/20c4d3c7dbca4101a5ea100593256910.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+<p>点击进去</p>
+<p><img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/1aaf938416724f28859590d9befa7cb4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Y2K5aSPXzIwMjE=,size_20,color_FFFFFF,t_70,g_se,x_16" /></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../GIT%20%E8%A7%84%E8%8C%83/" class="md-footer__link md-footer__link--prev" aria-label="上一页: GIT 规范" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              GIT 规范
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../GIT%20%E5%91%BD%E4%BB%A4/GIT%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="md-footer__link md-footer__link--next" aria-label="下一页: GIT 常用命令" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              GIT 常用命令
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 SYNC
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://github.com/littlecabbage" target="_blank" rel="noopener" title="github of sync" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    <a href="mailto:<zengzh1997@126.com>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6l-126.3-52.5-40.1 74.5c-5.2 9.7-16.3 14.6-27 11.9S192 499 192 488v-96c0-5.3 1.8-10.5 5.1-14.7l165.3-212.6c2.5-7.1-6.5-14.3-13-8.4l-179 161.9-32 28.9c-9.2 8.3-22.3 10.6-33.8 5.8l-85-35.4C8.4 312.8.8 302.2.1 290s5.5-23.7 16.1-29.8l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.top", "toc.follow", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../../assets/js/mathjax.js"></script>
+      
+        <script src="../../../assets/js/utils.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../assets/js/tooltipster.bundle.js"></script>
+      
+    
+  </body>
+</html>
